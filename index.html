@@ -13,13 +13,146 @@
         }
 
         body {
-            background: linear-gradient(135deg, #4caf50, #2196f3);
-            color: #333;
             text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Landing Page Styles */
+        #landing-page {
+            background: linear-gradient(135deg, #ffeb3b, #ff9800);
+            min-height: 100vh;
             padding: 20px;
         }
 
-        .container {
+        .landing-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .landing-header h1 {
+            font-size: 3rem;
+            color: #d81b60;
+            text-shadow: 2px 2px #fff;
+            animation: bounce 2s infinite;
+            margin-top: 20px;
+        }
+
+        .landing-header p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .cta-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #388e3c;
+            transform: scale(1.1);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .feature-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-box img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.2rem;
+            color: #d81b60;
+        }
+
+        .landing-footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        /* Intro Page Styles */
+        #intro-page {
+            display: none;
+            background: linear-gradient(135deg, #ff4081, #3f51b5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .intro-container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .intro-title {
+            font-size: 3.5rem;
+            color: #ffeb3b;
+            text-shadow: 3px 3px #d81b60;
+            animation: bounce 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .intro-subtitle {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px #4caf50;
+            animation: fadeIn 2s ease-in-out;
+            margin-bottom: 30px;
+        }
+
+        .intro-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.8rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-button:hover {
+            background-color: #388e3c;
+            transform: scale(1.1);
+        }
+
+        /* Quiz Page Styles */
+        #quiz-page {
+            display: none;
+            background: linear-gradient(135deg, #4caf50, #2196f3);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .quiz-container {
             max-width: 600px;
             margin: 0 auto;
             background: #fff;
@@ -28,7 +161,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        h1 {
+        .quiz-container h1 {
             font-size: 2.5rem;
             color: #d81b60;
             margin-bottom: 20px;
@@ -91,8 +224,56 @@
             display: none;
         }
 
+        /* Animations */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 600px) {
-            h1 {
+            .landing-header h1, .intro-title {
+                font-size: 2.5rem;
+            }
+
+            .landing-header p, .intro-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-box {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .cta-button, .intro-button {
+                font-size: 1.5rem;
+                padding: 10px 20px;
+            }
+
+            .quiz-container h1 {
                 font-size: 2rem;
             }
 
@@ -108,16 +289,76 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Kuis Seru Budak-Budak!</h1>
-        <div id="question"></div>
-        <div id="options"></div>
-        <div id="feedback"></div>
-        <button id="next-btn" onclick="nextQuestion()">Soalan Seterusnya</button>
-        <div id="result"></div>
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <div class="landing-container">
+            <div class="landing-header">
+                <h1>Kuis Seru untuk Budak-Budak!</h1>
+                <p>Ayo main kuis yang bikin ketawa dan tambah pinter! 😄</p>
+                <button class="cta-button" onclick="showIntro()">Mulai Kuis Sekarang!</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-box">
+                    <img src="https://img.icons8.com/color/48/000000/star--v1.png" alt="Bintang">
+                    <h3>Soal Gampang</h3>
+                    <p>Kuis yang pas buat semua umur, seru dan nggak bikin bingung!</p>
+                </div>
+                <div class="feature-box">
+                    <img src="https://img.icons8.com/color/48/000000/gift--v1.png" alt="Hadiah">
+                    <h3>Hadiah Keren</h3>
+                    <p>Main kuis, dapatkan poin, dan tukar dengan hadiah lucu!</p>
+                </div>
+                <div class="feature-box">
+                    <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
+                    <h3>Belajar Sambil Main</h3>
+                    <p>Tambah pengetahuan sambil bersenang-senang!</p>
+                </div>
+            </div>
+
+            <div class="landing-footer">
+                <p>© 2025 Kuis Budak-Budak. Yuk, main bareng temen!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro Page -->
+    <div id="intro-page">
+        <div class="intro-container">
+            <h1 class="intro-title">Kuis Seru untuk Budak-Budak!</h1>
+            <p class="intro-subtitle">Ayo main kuis yang bikin ketawa dan tambah pinter! 😄</p>
+            <button class="intro-button" onclick="startQuiz()">Ayo Mulai!</button>
+        </div>
+    </div>
+
+    <!-- Quiz Page -->
+    <div id="quiz-page">
+        <div class="quiz-container">
+            <h1>Kuis Seru Budak-Budak!</h1>
+            <div id="question"></div>
+            <div id="options"></div>
+            <div id="feedback"></div>
+            <button id="next-btn" onclick="nextQuestion()">Soalan Seterusnya</button>
+            <div id="result"></div>
+        </div>
     </div>
 
     <script>
+        // Navigation Functions
+        function showIntro() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'flex';
+            document.getElementById('quiz-page').style.display = 'none';
+        }
+
+        function startQuiz() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('quiz-page').style.display = 'block';
+            loadQuestion();
+        }
+
+        // Quiz Logic
         const questions = [
             {
                 question: "Apa warna langit pada hari cerah?",
@@ -230,9 +471,6 @@
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `Kuis selesai! Skor kamu: ${score} daripada ${questions.length}.<br>Terima kasih kerana bermain! 😄`;
         }
-
-        // Mulakan kuis
-        loadQuestion();
     </script>
 </body>
 </html>
