@@ -224,6 +224,65 @@
             display: none;
         }
 
+        /* Congrats Animation */
+        #congrats-page {
+            display: none;
+            background: linear-gradient(135deg, #ffeb3b, #4caf50);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .congrats-container {
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .congrats-title {
+            font-size: 3.5rem;
+            color: #d81b60;
+            text-shadow: 2px 2px #fff;
+            animation: bounce 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .congrats-message {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .next-quiz-button {
+            background-color: #2196f3;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.8rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .next-quiz-button:hover {
+            background-color: #1976d2;
+            transform: scale(1.1);
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
         /* Animations */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
@@ -250,11 +309,11 @@
 
         /* Responsive Design */
         @media (max-width: 600px) {
-            .landing-header h1, .intro-title {
+            .landing-header h1, .intro-title, .congrats-title {
                 font-size: 2.5rem;
             }
 
-            .landing-header p, .intro-subtitle {
+            .landing-header p, .intro-subtitle, .congrats-message {
                 font-size: 1.5rem;
             }
 
@@ -268,7 +327,7 @@
                 margin-bottom: 20px;
             }
 
-            .cta-button, .intro-button {
+            .cta-button, .intro-button, .next-quiz-button {
                 font-size: 1.5rem;
                 padding: 10px 20px;
             }
@@ -327,7 +386,7 @@
         <div class="intro-container">
             <h1 class="intro-title">Kuis Seru untuk Budak-Budak!</h1>
             <p class="intro-subtitle">Ayo main kuis yang bikin ketawa dan tambah pinter! 😄</p>
-            <button class="intro-button" onclick="startQuiz()">Ayo Mulai!</button>
+            <button class="intro-button" onclick="startQuiz(1)">Ayo Mulai!</button>
         </div>
     </div>
 
@@ -343,23 +402,19 @@
         </div>
     </div>
 
+    <!-- Congrats Page -->
+    <div id="congrats-page">
+        <canvas id="confetti-canvas"></canvas>
+        <div class="congrats-container">
+            <h1 class="congrats-title">Tahniah! 10/10!</h1>
+            <p class="congrats-message">Kamu hebat! Semua soalan betul! 🎉 Mahu cuba kuis baru?</p>
+            <button class="next-quiz-button" onclick="startQuiz(2)">Main Kuis Baru!</button>
+        </div>
+    </div>
+
     <script>
-        // Navigation Functions
-        function showIntro() {
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('intro-page').style.display = 'flex';
-            document.getElementById('quiz-page').style.display = 'none';
-        }
-
-        function startQuiz() {
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('intro-page').style.display = 'none';
-            document.getElementById('quiz-page').style.display = 'block';
-            loadQuestion();
-        }
-
-        // Quiz Logic
-        const questions = [
+        // Quiz Data
+        const quiz1Questions = [
             {
                 question: "Apa warna langit pada hari cerah?",
                 options: ["Merah", "Biru", "Hijau", "Kuning"],
@@ -412,11 +467,87 @@
             }
         ];
 
+        const quiz2Questions = [
+            {
+                question: "Hewan yang paling besar di dunia?",
+                options: ["Gajah", "Paus biru", "Badak", "Jerapah"],
+                answer: "Paus biru"
+            },
+            {
+                question: "Apa warna daun pada musim panas?",
+                options: ["Merah", "Kuning", "Hijau", "Oren"],
+                answer: "Hijau"
+            },
+            {
+                question: "Berapa jari di satu tangan manusia?",
+                options: ["Tiga", "Empat", "Lima", "Enam"],
+                answer: "Lima"
+            },
+            {
+                question: "Buah yang paling manis?",
+                options: ["Lemon", "Mangga", "Cili", "Betik"],
+                answer: "Mangga"
+            },
+            {
+                question: "Apa yang terbang tanpa sayap?",
+                options: ["Burung", "Masa", "Kapal terbang", "Helikopter"],
+                answer: "Masa"
+            },
+            {
+                question: "Binatang yang paling cepat berlari?",
+                options: ["Kucing", "Cheetah", "Anjing", "Kuda"],
+                answer: "Cheetah"
+            },
+            {
+                question: "Apa nama bulan pertama dalam setahun?",
+                options: ["Mac", "Januari", "Julai", "Disember"],
+                answer: "Januari"
+            },
+            {
+                question: "Alat muzik yang dimainkan dengan tiup?",
+                options: ["Gitar", "Piano", "Seruling", "Drum"],
+                answer: "Seruling"
+            },
+            {
+                question: "Apa yang selalu basah walaupun kering?",
+                options: ["Baju", "Tuala", "Air", "Kertas"],
+                answer: "Tuala"
+            },
+            {
+                question: "Sayuran yang berwarna ungu?",
+                options: ["Kobis ungu", "Bayam", "Kacang", "Timun"],
+                answer: "Kobis ungu"
+            }
+        ];
+
+        let currentQuiz = 1;
+        let currentQuestions = quiz1Questions;
         let currentQuestion = 0;
         let score = 0;
 
+        // Navigation Functions
+        function showIntro() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'flex';
+            document.getElementById('quiz-page').style.display = 'none';
+            document.getElementById('congrats-page').style.display = 'none';
+        }
+
+        function startQuiz(quizNumber) {
+            currentQuiz = quizNumber;
+            currentQuestions = quizNumber === 1 ? quiz1Questions : quiz2Questions;
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('quiz-page').style.display = 'block';
+            document.getElementById('congrats-page').style.display = 'none';
+            loadQuestion();
+        }
+
+        // Quiz Logic
         function loadQuestion() {
-            const q = questions[currentQuestion];
+            const q = currentQuestions[currentQuestion];
             document.getElementById('question').innerText = q.question;
             const optionsDiv = document.getElementById('options');
             optionsDiv.innerHTML = '';
@@ -429,12 +560,15 @@
                 optionsDiv.appendChild(button);
             });
 
+            document.getElementById('question').style.display = 'block';
+            document.getElementById('options').style.display = 'block';
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
         }
 
         function checkAnswer(selected) {
-            const q = questions[currentQuestion];
+            const q = currentQuestions[currentQuestion];
             const feedback = document.getElementById('feedback');
             feedback.style.display = 'block';
 
@@ -454,7 +588,7 @@
 
         function nextQuestion() {
             currentQuestion++;
-            if (currentQuestion < questions.length) {
+            if (currentQuestion < currentQuestions.length) {
                 loadQuestion();
             } else {
                 showResult();
@@ -469,7 +603,65 @@
 
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `Kuis selesai! Skor kamu: ${score} daripada ${questions.length}.<br>Terima kasih kerana bermain! 😄`;
+
+            if (score === currentQuestions.length) {
+                showCongrats();
+            } else {
+                resultDiv.innerHTML = `Skor kamu: ${score} daripada ${currentQuestions.length}.<br>Jangan putus asa, cuba lagi sampai dapat 10/10! 😄<br><button class="cta-button" onclick="startQuiz(${currentQuiz})">Cuba Lagi</button>`;
+            }
+        }
+
+        // Congrats Logic
+        function showCongrats() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('quiz-page').style.display = 'none';
+            document.getElementById('congrats-page').style.display = 'flex';
+            startConfetti();
+        }
+
+        // Confetti Animation
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const confetti = [];
+            const colors = ['#ffeb3b', '#4caf50', '#d81b60', '#2196f3', '#ff9800'];
+
+            for (let i = 0; i < 100; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 5 + 2,
+                    angle: Math.random() * 360
+                });
+            }
+
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confetti.forEach(c => {
+                    c.y += c.speed;
+                    c.x += Math.sin(c.angle) * 0.5;
+                    c.angle += 0.1;
+
+                    if (c.y > canvas.height) {
+                        c.y = -c.r;
+                        c.x = Math.random() * canvas.width;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+                    ctx.fillStyle = c.color;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateConfetti);
+            }
+
+            animateConfetti();
         }
     </script>
 </body>
