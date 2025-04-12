@@ -79,10 +79,15 @@
             width: clamp(200px, 30%, 300px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .feature-box:hover {
-            transform: translateY(-10px);
+            transform: scale(1.1);
+        }
+
+        .feature-box:active {
+            transform: scale(1.05);
         }
 
         .feature-box img {
@@ -99,6 +104,23 @@
             margin-top: 40px;
             font-size: clamp(0.8rem, 2vw, 1rem);
             color: #fff;
+        }
+
+        /* Popup for Laugh Together */
+        #laugh-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffeb3b;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #d81b60;
+            animation: fadeIn 0.5s ease-in-out;
+            z-index: 1000;
         }
 
         /* Intro Page Styles */
@@ -585,17 +607,17 @@
             </div>
 
             <div class="features">
-                <div class="feature-box">
+                <div class="feature-box" onclick="showAvatarSelection('solo')">
                     <img src="https://img.icons8.com/color/48/000000/user.png" alt="Seorang">
                     <h3>Main Seorang</h3>
                     <p>Jadi juara dengan avatar pilihan kamu!</p>
                 </div>
-                <div class="feature-box">
+                <div class="feature-box" onclick="showAvatarSelection('multi')">
                     <img src="https://img.icons8.com/color/48/000000/two-hearts.png" alt="Berdua">
                     <h3>Main Berdua</h3>
                     <p>Ajak kawan, main sama-sama di telefon berbeza!</p>
                 </div>
-                <div class="feature-box">
+                <div class="feature-box" onclick="laughTogether()">
                     <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
                     <h3>Ketawa Bersama</h3>
                     <p>Soalan dengan ikon lucu, bunyi seronok!</p>
@@ -607,6 +629,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Laugh Together Popup -->
+    <div id="laugh-popup">Jom ketawa bersama kawan! 😄</div>
 
     <!-- Intro Page -->
     <div id="intro-page">
@@ -691,7 +716,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js"></script>
 
     <script>
-        // Firebase Configuration
+        // Firebase Configuration (Ganti dengan konfigurasi anda)
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -705,6 +730,12 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+
+        // Audio Files (Ganti dengan URL sebenar atau hoskan fail)
+        const correctSound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3');
+        const wrongSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+        const cheerSound = new Audio('https://www.soundjay.com/human/sounds/applause-01.mp3');
+        const laughSound = new Audio('https://www.soundjay.com/human/sounds/laugh-01.mp3');
 
         // Quiz Data with Icons
         const quizData = {
@@ -732,7 +763,6 @@
                 { question: "Apa yang selalu basah walaupun kering?", options: ["Baju", "Tuala", "Air", "Kertas"], answer: "Tuala", icon: "🧴" },
                 { question: "Sayuran yang berwarna ungu?", options: ["Kobis ungu", "Bayam", "Kacang", "Timun"], answer: "Kobis ungu", icon: "🥬" }
             ],
-            // Tahap lain serupa, ditambah ikon seperti: 🐼, 🍎, 🚗, dll.
             3: [
                 { question: "Apa nama bendera Malaysia?", options: ["Jalur Gemilang", "Bunga Raya", "Harimau Malaya", "Sang Saka"], answer: "Jalur Gemilang", icon: "🇲🇾" },
                 { question: "Berapa kaki seekor labah-labah?", options: ["Empat", "Lapan", "Enam", "Sepuluh"], answer: "Lapan", icon: "🕷️" },
@@ -745,7 +775,6 @@
                 { question: "Apa yang kita gunakan untuk melihat bintang di langit?", options: ["Mikroskop", "Teleskop", "Kamera", "Kaca mata"], answer: "Teleskop", icon: "🔭" },
                 { question: "Sayuran yang digunakan dalam nasi goreng?", options: ["Kubis", "Brokoli", "Lobak merah", "Zukini"], answer: "Lobak merah", icon: "🥕" }
             ],
-            // Sila tambah ikon untuk tahap 4-10 jika diperlukan
             4: [
                 { question: "Apa ibu kota Malaysia?", options: ["Kuala Lumpur", "Johor Bahru", "Penang", "Melaka"], answer: "Kuala Lumpur", icon: "🏙️" },
                 { question: "Berapa ekor kaki pada lebah?", options: ["Empat", "Lima", "Enam", "Tujuh"], answer: "Enam", icon: "🐝" },
@@ -846,11 +875,6 @@
         let roomId = null;
         let isOnlineMulti = false;
 
-        // Audio Files (Ganti dengan URL sebenar atau hoskan fail)
-        const correctSound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3');
-        const wrongSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
-        const cheerSound = new Audio('https://www.soundjay.com/human/sounds/applause-01.mp3');
-
         // Navigation Functions
         function showIntro() {
             document.getElementById('landing-page').style.display = 'flex';
@@ -860,6 +884,7 @@
             document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
         }
 
         function showModeSelection() {
@@ -870,6 +895,7 @@
             document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
         }
 
         function showAvatarSelection(mode) {
@@ -882,6 +908,7 @@
             document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
 
             const avatarTitle = document.getElementById('avatar-title');
             avatarTitle.innerText = mode === 'solo' ? 'Pilih Avatar Kamu!' : `Pilih Avatar Pemain ${currentPlayer}!`;
@@ -935,6 +962,16 @@
             document.getElementById('room-page').style.display = 'flex';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
+        }
+
+        function laughTogether() {
+            const popup = document.getElementById('laugh-popup');
+            popup.style.display = 'block';
+            laughSound.play();
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 2000);
         }
 
         function createRoom() {
@@ -1015,6 +1052,7 @@
             document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'block';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
             loadQuestion();
         }
 
@@ -1246,6 +1284,7 @@
             document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'flex';
+            document.getElementById('laugh-popup').style.display = 'none';
             const congratsTitle = document.getElementById('congrats-title');
             const congratsMessage = document.getElementById('congrats-message');
             const nextLevelBtn = document.getElementById('next-level-btn');
