@@ -64,6 +64,10 @@
             transform: scale(1.1);
         }
 
+        .cta-button.fade-out {
+            animation: fadeOut 1s forwards;
+        }
+
         .features {
             display: flex;
             flex-wrap: wrap;
@@ -79,14 +83,18 @@
             width: clamp(200px, 30%, 300px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            cursor: not-allowed;
+        }
+
+        .feature-box.active {
             cursor: pointer;
         }
 
-        .feature-box:hover {
+        .feature-box.active:hover {
             transform: scale(1.1);
         }
 
-        .feature-box:active {
+        .feature-box.active:active {
             transform: scale(1.05);
         }
 
@@ -104,6 +112,23 @@
             margin-top: 40px;
             font-size: clamp(0.8rem, 2vw, 1rem);
             color: #fff;
+        }
+
+        .footer-highlight {
+            display: inline-block;
+            background: #d81b60;
+            color: #ffeb3b;
+            padding: 8px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .footer-highlight:hover {
+            transform: scale(1.1);
+            background: #b0003a;
         }
 
         /* Intro Page Styles */
@@ -357,6 +382,16 @@
             }
         }
 
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
         /* Congrats Page Styles */
         #congrats-page {
             display: none;
@@ -448,6 +483,11 @@
             .cta-button, .intro-button, .mode-button, .next-quiz-button {
                 padding: 10px 20px;
             }
+
+            .footer-highlight {
+                padding: 6px 12px;
+                font-size: clamp(0.7rem, 2vw, 0.9rem);
+            }
         }
     </style>
 </head>
@@ -458,21 +498,21 @@
             <div class="landing-header">
                 <h1>Kuiz Seronok untuk Seorang atau Berdua!</h1>
                 <p>Main sendiri atau ajak kawan, ketawa dan belajar sama-sama! 😄</p>
-                <button class="cta-button" onclick="showIntro()">Mulakan Kuiz Sekarang!</button>
+                <button class="cta-button" id="start-quiz-btn" onclick="enableFeatures()">Mulakan Kuiz Sekarang!</button>
             </div>
 
             <div class="features">
-                <div class="feature-box" onclick="startQuiz(1, 'solo')">
+                <div class="feature-box" id="solo-box" onclick="featureClicked('solo')">
                     <img src="https://img.icons8.com/color/48/000000/user.png" alt="Seorang">
                     <h3>Main Seorang</h3>
                     <p>Jadi juara sendiri dengan soalan mudah dan seronok!</p>
                 </div>
-                <div class="feature-box" onclick="startQuiz(1, 'multi')">
+                <div class="feature-box" id="multi-box" onclick="featureClicked('multi')">
                     <img src="https://img.icons8.com/color/48/000000/two-hearts.png" alt="Berdua">
                     <h3>Main Berdua</h3>
                     <p>Ajak kawan, jawab sekali, dan menang sebagai pasukan!</p>
                 </div>
-                <div class="feature-box" onclick="laughTogether()">
+                <div class="feature-box" id="laugh-box" onclick="featureClicked('laugh')">
                     <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
                     <h3>Ketawa Bersama</h3>
                     <p>Soalan lucu buat kamu gembira, sama ada seorang atau berdua!</p>
@@ -481,6 +521,11 @@
 
             <div class="landing-footer">
                 <p>© 2025 Kuiz Kanak-Kanak. Jom main dan menang!</p>
+                <p>
+                    <a href="https://shopee.com.my/shop/19685484" target="_blank" class="footer-highlight">
+                        Hak Cipta NeckleNJ - Temui keseronokan di Kedai Jual Beli Shopee NeckleNJ!
+                    </a>
+                </p>
             </div>
         </div>
     </div>
@@ -1073,8 +1118,37 @@
         let player1Answer = null;
         let player2Answer = null;
         let gameMode = 'solo'; // 'solo' atau 'multi'
+        let isQuizStarted = false;
 
         // Navigation Functions
+        function enableFeatures() {
+            const startButton = document.getElementById('start-quiz-btn');
+            startButton.classList.add('fade-out');
+            isQuizStarted = true;
+            document.querySelectorAll('.feature-box').forEach(box => {
+                box.classList.add('active');
+            });
+        }
+
+        function featureClicked(type) {
+            if (!isQuizStarted) return;
+            if (type === 'solo') {
+                startQuiz(1, 'solo');
+            } else if (type === 'multi') {
+                startQuiz(1, 'multi');
+            } else if (type === 'laugh') {
+                laughTogether();
+            }
+        }
+
+        function laughTogether() {
+            const popup = document.getElementById('laugh-popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 2000);
+        }
+
         function showIntro() {
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'flex';
@@ -1091,14 +1165,6 @@
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
             document.getElementById('laugh-popup').style.display = 'none';
-        }
-
-        function laughTogether() {
-            const popup = document.getElementById('laugh-popup');
-            popup.style.display = 'block';
-            setTimeout(() => {
-                popup.style.display = 'none';
-            }, 2000);
         }
 
         function startQuiz(quizNumber, mode) {
