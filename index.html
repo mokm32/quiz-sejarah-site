@@ -79,10 +79,15 @@
             width: clamp(200px, 30%, 300px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .feature-box:hover {
-            transform: translateY(-10px);
+            transform: scale(1.1);
+        }
+
+        .feature-box:active {
+            transform: scale(1.05);
         }
 
         .feature-box img {
@@ -300,6 +305,23 @@
             display: none;
         }
 
+        /* Laugh Together Popup */
+        #laugh-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffeb3b;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #d81b60;
+            animation: fadeIn 0.5s ease-in-out;
+            z-index: 1000;
+        }
+
         /* Feedback and Countdown Animations */
         @keyframes popIn {
             0% {
@@ -321,6 +343,17 @@
             }
             100% {
                 transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -396,17 +429,6 @@
             }
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Responsive Design */
         @media (max-width: 600px) {
             .player-section {
@@ -440,17 +462,17 @@
             </div>
 
             <div class="features">
-                <div class="feature-box">
+                <div class="feature-box" onclick="startQuiz(1, 'solo')">
                     <img src="https://img.icons8.com/color/48/000000/user.png" alt="Seorang">
                     <h3>Main Seorang</h3>
                     <p>Jadi juara sendiri dengan soalan mudah dan seronok!</p>
                 </div>
-                <div class="feature-box">
+                <div class="feature-box" onclick="startQuiz(1, 'multi')">
                     <img src="https://img.icons8.com/color/48/000000/two-hearts.png" alt="Berdua">
                     <h3>Main Berdua</h3>
                     <p>Ajak kawan, jawab sekali, dan menang sebagai pasukan!</p>
                 </div>
-                <div class="feature-box">
+                <div class="feature-box" onclick="laughTogether()">
                     <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
                     <h3>Ketawa Bersama</h3>
                     <p>Soalan lucu buat kamu gembira, sama ada seorang atau berdua!</p>
@@ -462,6 +484,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Laugh Together Popup -->
+    <div id="laugh-popup">Jom ketawa bersama kawan! 😄</div>
 
     <!-- Intro Page -->
     <div id="intro-page">
@@ -1056,6 +1081,7 @@
             document.getElementById('mode-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
         }
 
         function showModeSelection() {
@@ -1064,6 +1090,15 @@
             document.getElementById('mode-page').style.display = 'flex';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
+        }
+
+        function laughTogether() {
+            const popup = document.getElementById('laugh-popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 2000);
         }
 
         function startQuiz(quizNumber, mode) {
@@ -1082,6 +1117,7 @@
             document.getElementById('mode-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'block';
             document.getElementById('congrats-page').style.display = 'none';
+            document.getElementById('laugh-popup').style.display = 'none';
             loadQuestion();
         }
 
@@ -1282,6 +1318,7 @@
             document.getElementById('mode-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'flex';
+            document.getElementById('laugh-popup').style.display = 'none';
             const congratsTitle = document.getElementById('congrats-title');
             const congratsMessage = document.getElementById('congrats-message');
             const nextLevelBtn = document.getElementById('next-level-btn');
