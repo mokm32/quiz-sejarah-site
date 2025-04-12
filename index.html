@@ -14,49 +14,55 @@
 
         body {
             text-align: center;
-            overflow-x: hidden;
+            overflow: hidden; /* Mencegah skrol pada body */
         }
 
         /* Landing Page Styles */
         #landing-page {
             background: linear-gradient(135deg, #ffeb3b, #ff9800);
-            min-height: 100vh;
+            height: 100vh; /* Mengisi keseluruhan tinggi viewport */
             padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden; /* Mencegah skrol pada landing page */
         }
 
         .landing-container {
             max-width: 800px;
-            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Memastikan kandungan muat dalam viewport */
         }
 
         .landing-header h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: #d81b60;
             text-shadow: 2px 2px #fff;
             animation: bounce 2s infinite;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .landing-header p {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin: 20px 0;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            margin: 15px 0;
             color: #fff;
         }
 
         .cta-button {
             background-color: #4caf50;
             color: white;
-            padding: 15px 30px;
-            font-size: clamp(1rem, 3vw, 1.5rem);
+            padding: 12px 25px;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             border: none;
             border-radius: 25px;
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 10px;
+            margin: 10px 0;
         }
 
         .cta-button:hover {
@@ -72,15 +78,16 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
+            gap: 15px;
+            margin: 20px 0;
+            max-height: 200px; /* Hadkan tinggi untuk muat dalam viewport */
         }
 
         .feature-box {
             background: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 15px;
-            width: clamp(200px, 30%, 300px);
+            width: clamp(180px, 30%, 250px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
             cursor: not-allowed;
@@ -99,26 +106,31 @@
         }
 
         .feature-box img {
-            width: 60px;
-            margin-bottom: 10px;
+            width: 50px;
+            margin-bottom: 8px;
         }
 
         .feature-box h3 {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(0.9rem, 2vw, 1rem);
             color: #d81b60;
         }
 
+        .feature-box p {
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+        }
+
         .landing-footer {
-            margin-top: 40px;
-            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
             color: #fff;
+            margin-top: auto; /* Tolak footer ke bawah dalam flex container */
+            padding-bottom: 10px;
         }
 
         .footer-highlight {
             display: inline-block;
             background: #d81b60;
             color: #ffeb3b;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
@@ -140,6 +152,7 @@
             justify-content: center;
             align-items: center;
             color: #fff;
+            overflow: auto; /* Benarkan skrol pada halaman lain */
         }
 
         .intro-container {
@@ -189,6 +202,7 @@
             justify-content: center;
             align-items: center;
             color: #fff;
+            overflow: auto;
         }
 
         .mode-container {
@@ -233,6 +247,7 @@
             background: linear-gradient(135deg, #4caf50, #2196f3);
             min-height: 100vh;
             padding: 20px;
+            overflow: auto;
         }
 
         .quiz-container {
@@ -401,7 +416,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .congrats-container {
@@ -484,9 +499,23 @@
                 padding: 10px 20px;
             }
 
+            .features {
+                gap: 10px;
+                max-height: 180px;
+            }
+
+            .feature-box {
+                width: clamp(150px, 45%, 200px);
+                padding: 10px;
+            }
+
+            .feature-box img {
+                width: 40px;
+            }
+
             .footer-highlight {
-                padding: 6px 12px;
-                font-size: clamp(0.7rem, 2vw, 0.9rem);
+                padding: 5px 10px;
+                font-size: clamp(0.6rem, 1.5vw, 0.8rem);
             }
         }
     </style>
@@ -501,7 +530,7 @@
                 <button class="cta-button" id="start-quiz-btn" onclick="enableFeatures()">Mulakan Kuiz Sekarang!</button>
             </div>
 
-            <div class="features">
+            <div class="features" id="features-section">
                 <div class="feature-box" id="solo-box" onclick="featureClicked('solo')">
                     <img src="https://img.icons8.com/color/48/000000/user.png" alt="Seorang">
                     <h3>Main Seorang</h3>
@@ -1123,15 +1152,24 @@
         // Navigation Functions
         function enableFeatures() {
             const startButton = document.getElementById('start-quiz-btn');
-            startButton.classList.add('fade-out');
+            startButton.classList.add('fade-out'); // Memudar butang
             isQuizStarted = true;
             document.querySelectorAll('.feature-box').forEach(box => {
-                box.classList.add('active');
+                box.classList.add('active'); // Mengaktifkan kotak fitur
+            });
+
+            // Skrol halus ke bahagian features
+            document.getElementById('features-section').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
             });
         }
 
         function featureClicked(type) {
-            if (!isQuizStarted) return;
+            if (!isQuizStarted) {
+                alert("Sila tekan 'Mulakan Kuiz Sekarang!' terlebih dahulu!");
+                return;
+            }
             if (type === 'solo') {
                 startQuiz(1, 'solo');
             } else if (type === 'multi') {
