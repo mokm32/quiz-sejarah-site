@@ -1,303 +1,140 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Sejarah SPM - Contoh Soalan</title>
+    <title>Kuis Seru Budak-Budak</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
         }
 
         body {
-            background-color: #f5f6f5;
-            color: #1a252f;
+            background: linear-gradient(135deg, #ffeb3b, #ff9800);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #e6ecef;
-            border-bottom: 3px solid #003087;
-            margin-bottom: 30px;
+        .header {
+            margin-top: 20px;
         }
 
-        header h1 {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: #003087;
-            margin-bottom: 10px;
+        .header h1 {
+            font-size: 3rem;
+            color: #d81b60;
+            text-shadow: 2px 2px #fff;
+            animation: bounce 2s infinite;
         }
 
-        header p {
-            font-size: 1.1em;
-            color: #4a5b6a;
-        }
-
-        .hero {
-            background-color: white;
-            padding: 30px;
-            border: 1px solid #ccd6dd;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 1.8em;
-            color: #003087;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1em;
-            color: #4a5b6a;
-            margin-bottom: 20px;
+        .header p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #fff;
         }
 
         .cta-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #003087;
+            background-color: #4caf50;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1em;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .cta-button:hover {
-            background-color: #00205b;
+            background-color: #388e3c;
+            transform: scale(1.1);
         }
 
-        .quiz-list {
-            margin-bottom: 40px;
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
         }
 
-        .quiz-list h2 {
-            font-size: 1.8em;
-            color: #003087;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 2px solid #ccd6dd;
-            padding-bottom: 5px;
-        }
-
-        .quiz-grid {
-            display: grid;
-            gap: 20px;
-        }
-
-        .quiz-card {
-            background-color: white;
+        .feature-box {
+            background: #fff;
             padding: 20px;
-            border: 1px solid #ccd6dd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.2s;
+            border-radius: 15px;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
         }
 
-        .quiz-card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .feature-box:hover {
+            transform: translateY(-10px);
         }
 
-        .quiz-card h3 {
-            font-size: 1.4em;
-            color: #003087;
+        .feature-box img {
+            width: 60px;
             margin-bottom: 10px;
-            font-weight: bold;
         }
 
-        .quiz-card .question {
-            font-size: 1em;
-            color: #4a5b6a;
-            margin-bottom: 15px;
-            line-height: 1.5;
+        .feature-box h3 {
+            font-size: 1.2rem;
+            color: #d81b60;
         }
 
-        .quiz-card .options {
-            margin-bottom: 15px;
+        .footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #fff;
         }
 
-        .quiz-card .options div {
-            margin: 5px 0;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
         }
 
-        .quiz-card .answer {
-            display: none;
-            font-size: 0.95em;
-            color: #28a745;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .quiz-card .toggle-answer {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-        }
-
-        .quiz-card .toggle-answer:hover {
-            background-color: #0056b3;
-        }
-
-        .quiz-card .start-quiz {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.95em;
-            font-weight: bold;
-        }
-
-        .quiz-card .start-quiz:hover {
-            background-color: #218838;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #e6ecef;
-            color: #4a5b6a;
-            border-top: 3px solid #003087;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
             }
 
-            .hero {
-                padding: 20px;
+            .header p {
+                font-size: 1.2rem;
             }
 
-            .quiz-card {
-                padding: 15px;
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-box {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .cta-button {
+                font-size: 1.2rem;
+                padding: 10px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Quiz Sejarah SPM</h1>
-            <p>Pratonton Contoh Soalan untuk Persediaan Peperiksaan Anda</p>
-        </header>
-
-        <section class="hero">
-            <h2>Cuba Contoh Soalan Sejarah SPM</h2>
-            <p>
-                Lihat contoh soalan dari setiap modul quiz kami yang direka mengikut silabus SPM. Klik untuk menunjukkan jawapan dan mulakan latihan penuh untuk meningkatkan persediaan anda!
-            </p>
-            <a href="#quiz-list" class="cta-button">Lihat Contoh Soalan</a>
-        </section>
-
-        <section class="quiz-list" id="quiz-list">
-            <h2>Contoh Soalan Modul Quiz</h2>
-            <div class="quiz-grid">
-                <div class="quiz-card">
-                    <h3>Bahagian A: Sejarah Awal Malaysia</h3>
-                    <div class="question">Apakah nama kerajaan yang menjadi pusat perdagangan antarabangsa pada abad ke-15 di Asia Tenggara?</div>
-                    <div class="options">
-                        <div>A. Srivijaya</div>
-                        <div>B. Majapahit</div>
-                        <div>C. Melaka</div>
-                        <div>D. Langkasuka</div>
-                    </div>
-                    <div class="answer">Jawapan: C. Melaka</div>
-                    <button class="toggle-answer">Tunjuk Jawapan</button>
-                    <a href="#quiz1" class="start-quiz">Mulai Quiz Penuh</a>
-                </div>
-                <div class="quiz-card">
-                    <h3>Bahagian B: Penjajahan dan Kemerdekaan</h3>
-                    <div class="question">Nyatakan tiga sebab rakyat Tanah Melayu menentang Malayan Union.</div>
-                    <div class="answer">Jawapan: 
-                        <ul>
-                            <li>Kuasa Sultan dihapuskan.</li>
-                            <li>Kewarganegaraan jus soli dianggap mengancam hak Melayu.</li>
-                            <li>Pentadbiran British mengabaikan identiti budaya Melayu.</li>
-                        </ul>
-                    </div>
-                    <button class="toggle-answer">Tunjuk Jawapan</button>
-                    <a href="#quiz2" class="start-quiz">Mulai Quiz Penuh</a>
-                </div>
-                <div class="quiz-card">
-                    <h3>Bahagian C: Pembentukan Malaysia</h3>
-                    <div class="question">Bilakah Malaysia ditubuhkan secara rasmi?</div>
-                    <div class="options">
-                        <div>A. 31 Ogos 1957</div>
-                        <div>B. 16 September 1963</div>
-                        <div>C. 9 Ogos 1965</div>
-                        <div>D. 15 November 1961</div>
-                    </div>
-                    <div class="answer">Jawapan: B. 16 September 1963</div>
-                    <button class="toggle-answer">Tunjuk Jawapan</button>
-                    <a href="#quiz3" class="start-quiz">Mulai Quiz Penuh</a>
-                </div>
-                <div class="quiz-card">
-                    <h3>Bahagian D: Sejarah Dunia Moden</h3>
-                    <div class="question">Jelaskan dua sebab meletusnya Perang Dingin.</div>
-                    <div class="answer">Jawapan: 
-                        <ul>
-                            <li>Perbezaan ideologi antara kapitalisme dan komunisme.</li>
-                            <li>Persaingan ketenteraan antara Amerika Syarikat dan Soviet Union.</li>
-                        </ul>
-                    </div>
-                    <button class="toggle-answer">Tunjuk Jawapan</button>
-                    <a href="#quiz4" class="start-quiz">Mulai Quiz Penuh</a>
-                </div>
-                <div class="quiz-card">
-                    <h3>Bahagian E: Latihan Menyeluruh</h3>
-                    <div class="question">Mengapa pendidikan penting dalam memupuk kesedaran nasionalisme di Tanah Melayu?</div>
-                    <div class="answer">Jawapan: 
-                        <ul>
-                            <li>Pendidikan Melayu menghasilkan golongan intelektual yang menentang penjajahan.</li>
-                            <li>Sekolah vernakular meningkatkan kesedaran identiti kaum.</li>
-                            <li>Pertubuhan seperti Kesatuan Melayu Muda dipengaruhi oleh pelajar terpelajar.</li>
-                        </ul>
-                    </div>
-                    <button class="toggle-answer">Tunjuk Jawapan</button>
-                    <a href="#quiz5" class="start-quiz">Mulai Quiz Penuh</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>© 2025 Quiz Sejarah SPM. Dibangunkan untuk Pelajar Cemerlang.</p>
-        </footer>
-    </div>
-
-    <script>
-        document.querySelectorAll('.toggle-answer').forEach(button => {
-            button.addEventListener('click', () => {
-                const answer = button.previousElementSibling;
-                if (answer.style.display === 'block') {
-                    answer.style.display = 'none';
-                    button.textContent = 'Tunjuk Jawapan';
-                } else {
-                    answer.style.display = 'block';
-                    button.textContent = 'Sembunyi Jawapan';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        <div class="header">
+            <h1>Kuis Seru untuk Budak-Budak!</h1>
+            <p>Ayo main kuis yang bikin ketawa dan tambah pinter! 😄</p>
+            <button class="cta-button" onclick="startQuiz()">Mulai Kuis Sekarang
