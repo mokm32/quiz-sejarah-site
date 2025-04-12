@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuiz Multiplayer Seronok untuk Kanak-Kanak</title>
+    <title>Kuiz Seronok untuk Seorang atau Berdua</title>
     <style>
         * {
             margin: 0;
@@ -150,6 +150,53 @@
             transform: scale(1.1);
         }
 
+        /* Mode Selection Page Styles */
+        #mode-page {
+            display: none;
+            background: linear-gradient(135deg, #2196f3, #4caf50);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .mode-container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .mode-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #ffeb3b;
+            text-shadow: 2px 2px #d81b60;
+            margin-bottom: 20px;
+        }
+
+        .mode-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .mode-button {
+            background-color: #d81b60;
+            color: white;
+            padding: 15px 30px;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .mode-button:hover {
+            background-color: #b0003a;
+            transform: scale(1.1);
+        }
+
         /* Quiz Page Styles */
         #quiz-page {
             display: none;
@@ -198,6 +245,10 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: #d81b60;
             margin-bottom: 10px;
+        }
+
+        #solo-options {
+            margin-top: 20px;
         }
 
         .option {
@@ -367,7 +418,12 @@
                 width: 100%;
             }
 
-            .cta-button, .intro-button, .next-quiz-button {
+            .mode-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cta-button, .intro-button, .mode-button, .next-quiz-button {
                 padding: 10px 20px;
             }
         }
@@ -378,31 +434,31 @@
     <div id="landing-page">
         <div class="landing-container">
             <div class="landing-header">
-                <h1>Kuiz Multiplayer Seronok untuk Kanak-Kanak!</h1>
-                <p>Berdua lebih seronok! Jom main kuiz bersama kawan dan jadi juara! 😄</p>
-                <button class="cta-button" onclick="showIntro()">Mulakan Kuiz Berdua!</button>
+                <h1>Kuiz Seronok untuk Seorang atau Berdua!</h1>
+                <p>Main sendiri atau ajak kawan, ketawa dan belajar sama-sama! 😄</p>
+                <button class="cta-button" onclick="showIntro()">Mulakan Kuiz Sekarang!</button>
             </div>
 
             <div class="features">
                 <div class="feature-box">
-                    <img src="https://img.icons8.com/color/48/000000/two-hearts.png" alt="Berdua">
-                    <h3>Berdua Lebih Seronok</h3>
-                    <p>Main bersama kawan, jawab soalan, dan menang bersama!</p>
+                    <img src="https://img.icons8.com/color/48/000000/user.png" alt="Seorang">
+                    <h3>Main Seorang</h3>
+                    <p>Jadi juara sendiri dengan soalan mudah dan seronok!</p>
                 </div>
                 <div class="feature-box">
-                    <img src="https://img.icons8.com/color/48/000000/trophy.png" alt="Trofi">
-                    <h3>Jadi Juara Berdua</h3>
-                    <p>Kumpul mata tertinggi dan tunjukkan kamu pasukan terbaik!</p>
+                    <img src="https://img.icons8.com/color/48/000000/two-hearts.png" alt="Berdua">
+                    <h3>Main Berdua</h3>
+                    <p>Ajak kawan, jawab sekali, dan menang sebagai pasukan!</p>
                 </div>
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
                     <h3>Ketawa Bersama</h3>
-                    <p>Soalan lucu dan mudah, buat kamu gembira setiap masa!</p>
+                    <p>Soalan lucu buat kamu gembira, sama ada seorang atau berdua!</p>
                 </div>
             </div>
 
             <div class="landing-footer">
-                <p>© 2025 Kuiz Multiplayer Kanak-Kanak. Jom menang bersama!</p>
+                <p>© 2025 Kuiz Kanak-Kanak. Jom main dan menang!</p>
             </div>
         </div>
     </div>
@@ -410,18 +466,29 @@
     <!-- Intro Page -->
     <div id="intro-page">
         <div class="intro-container">
-            <h1 class="intro-title">Kuiz Multiplayer Seronok!</h1>
-            <p class="intro-subtitle">Sedia untuk berlawan dengan kawan? Jom mulakan! 😄</p>
-            <button class="intro-button" onclick="startQuiz(1)">Mula Sekarang!</button>
+            <h1 class="intro-title">Kuiz Seronok untuk Kanak-Kanak!</h1>
+            <p class="intro-subtitle">Sedia untuk berseronok? Pilih cara main kamu! 😄</p>
+            <button class="intro-button" onclick="showModeSelection()">Mula Sekarang!</button>
+        </div>
+    </div>
+
+    <!-- Mode Selection Page -->
+    <div id="mode-page">
+        <div class="mode-container">
+            <h1 class="mode-title">Pilih Cara Main!</h1>
+            <div class="mode-buttons">
+                <button class="mode-button" onclick="startQuiz(1, 'solo')">Main Seorang</button>
+                <button class="mode-button" onclick="startQuiz(1, 'multi')">Main Berdua</button>
+            </div>
         </div>
     </div>
 
     <!-- Quiz Page -->
     <div id="quiz-page">
         <div class="quiz-container">
-            <h1>Kuiz Multiplayer Kanak-Kanak!</h1>
+            <h1>Kuiz Seronok Kanak-Kanak!</h1>
             <div id="question"></div>
-            <div class="player-section">
+            <div class="player-section" id="player-section">
                 <div class="player-box" id="player1-box">
                     <h3>Pemain 1 (Skor: <span id="player1-score">0</span>)</h3>
                     <div id="player1-options"></div>
@@ -431,6 +498,7 @@
                     <div id="player2-options"></div>
                 </div>
             </div>
+            <div id="solo-options"></div>
             <div id="feedback"></div>
             <div id="countdown"></div>
             <div id="result"></div>
@@ -441,8 +509,8 @@
     <div id="congrats-page">
         <canvas id="confetti-canvas"></canvas>
         <div class="congrats-container">
-            <h1 class="congrats-title">Tahniah! 10/10 Berdua!</h1>
-            <p class="congrats-message">Kamu berdua hebat! Semua soalan betul! 🎉 Nak main tahap seterusnya?</p>
+            <h1 class="congrats-title" id="congrats-title">Tahniah! 10/10!</h1>
+            <p class="congrats-message" id="congrats-message">Kamu hebat! Semua soalan betul! 🎉 Nak main tahap seterusnya?</p>
             <button class="next-quiz-button" id="next-level-btn">Main Tahap Seterusnya!</button>
         </div>
     </div>
@@ -979,25 +1047,39 @@
         let player2Score = 0;
         let player1Answer = null;
         let player2Answer = null;
+        let gameMode = 'solo'; // 'solo' atau 'multi'
 
         // Navigation Functions
         function showIntro() {
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'flex';
+            document.getElementById('mode-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
         }
 
-        function startQuiz(quizNumber) {
+        function showModeSelection() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('mode-page').style.display = 'flex';
+            document.getElementById('quiz-page').style.display = 'none';
+            document.getElementById('congrats-page').style.display = 'none';
+        }
+
+        function startQuiz(quizNumber, mode) {
             currentQuiz = quizNumber;
             currentQuestions = quizData[quizNumber];
+            gameMode = mode;
             currentQuestion = 0;
             player1Score = 0;
             player2Score = 0;
+            player1Answer = null;
+            player2Answer = null;
             document.getElementById('player1-score').innerText = '0';
             document.getElementById('player2-score').innerText = '0';
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('mode-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'block';
             document.getElementById('congrats-page').style.display = 'none';
             loadQuestion();
@@ -1009,31 +1091,85 @@
             document.getElementById('question').innerText = q.question;
             const player1Options = document.getElementById('player1-options');
             const player2Options = document.getElementById('player2-options');
+            const soloOptions = document.getElementById('solo-options');
+            const playerSection = document.getElementById('player-section');
             player1Options.innerHTML = '';
             player2Options.innerHTML = '';
+            soloOptions.innerHTML = '';
             player1Answer = null;
             player2Answer = null;
 
-            q.options.forEach(option => {
-                const button1 = document.createElement('button');
-                button1.className = 'option';
-                button1.innerText = option;
-                button1.onclick = () => selectAnswer(1, option);
-                player1Options.appendChild(button1);
+            if (gameMode === 'solo') {
+                playerSection.style.display = 'none';
+                soloOptions.style.display = 'block';
+                q.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'option';
+                    button.innerText = option;
+                    button.onclick = () => checkSoloAnswer(option);
+                    soloOptions.appendChild(button);
+                });
+            } else {
+                playerSection.style.display = 'flex';
+                soloOptions.style.display = 'none';
+                q.options.forEach(option => {
+                    const button1 = document.createElement('button');
+                    button1.className = 'option';
+                    button1.innerText = option;
+                    button1.onclick = () => selectAnswer(1, option);
+                    player1Options.appendChild(button1);
 
-                const button2 = document.createElement('button');
-                button2.className = 'option';
-                button2.innerText = option;
-                button2.onclick = () => selectAnswer(2, option);
-                player2Options.appendChild(button2);
-            });
+                    const button2 = document.createElement('button');
+                    button2.className = 'option';
+                    button2.innerText = option;
+                    button2.onclick = () => selectAnswer(2, option);
+                    player2Options.appendChild(button2);
+                });
+            }
 
             document.getElementById('question').style.display = 'block';
-            document.getElementById('player1-box').style.display = 'block';
-            document.getElementById('player2-box').style.display = 'block';
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('countdown').style.display = 'none';
             document.getElementById('result').style.display = 'none';
+        }
+
+        function checkSoloAnswer(selected) {
+            const q = currentQuestions[currentQuestion];
+            const feedback = document.getElementById('feedback');
+            const countdown = document.getElementById('countdown');
+            feedback.style.display = 'block';
+            countdown.style.display = 'block';
+
+            if (selected === q.answer) {
+                feedback.innerText = "Yay! Betul! 🎉";
+                feedback.style.backgroundColor = '#e8f5e9';
+                feedback.style.color = '#4caf50';
+                player1Score++;
+            } else {
+                feedback.innerText = `Alamak! Salah. Jawapan betul ialah "${q.answer}".`;
+                feedback.style.backgroundColor = '#fce4ec';
+                feedback.style.color = '#d81b60';
+            }
+
+            const buttons = document.querySelectorAll('#solo-options .option');
+            buttons.forEach(button => button.disabled = true);
+
+            // Mulakan countdown 5 saat
+            let timeLeft = 5;
+            countdown.innerText = timeLeft;
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                countdown.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    currentQuestion++;
+                    if (currentQuestion < currentQuestions.length) {
+                        loadQuestion();
+                    } else {
+                        showResult();
+                    }
+                }
+            }, 1000);
         }
 
         function selectAnswer(player, selected) {
@@ -1058,11 +1194,11 @@
             }
 
             if (player1Answer && player2Answer) {
-                checkAnswers();
+                checkMultiAnswers();
             }
         }
 
-        function checkAnswers() {
+        function checkMultiAnswers() {
             const q = currentQuestions[currentQuestion];
             const feedback = document.getElementById('feedback');
             const countdown = document.getElementById('countdown');
@@ -1116,18 +1252,26 @@
 
         function showResult() {
             document.getElementById('question').style.display = 'none';
-            document.getElementById('player1-box').style.display = 'none';
-            document.getElementById('player2-box').style.display = 'none';
+            document.getElementById('player-section').style.display = 'none';
+            document.getElementById('solo-options').style.display = 'none';
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('countdown').style.display = 'none';
 
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
 
-            if (player1Score === currentQuestions.length && player2Score === currentQuestions.length) {
-                showCongrats();
+            if (gameMode === 'solo') {
+                if (player1Score === currentQuestions.length) {
+                    showCongrats();
+                } else {
+                    resultDiv.innerHTML = `Skor kamu: ${player1Score}/10.<br>Jangan putus asa, cuba lagi sampai dapat 10/10! 😄<br><button class="cta-button" onclick="startQuiz(${currentQuiz}, 'solo')">Cuba Lagi</button>`;
+                }
             } else {
-                resultDiv.innerHTML = `Skor Pemain 1: ${player1Score}/10, Pemain 2: ${player2Score}/10.<br>Jangan putus asa, kedua-dua perlu dapat 10/10! 😄<br><button class="cta-button" onclick="startQuiz(${currentQuiz})">Cuba Lagi</button>`;
+                if (player1Score === currentQuestions.length && player2Score === currentQuestions.length) {
+                    showCongrats();
+                } else {
+                    resultDiv.innerHTML = `Skor Pemain 1: ${player1Score}/10, Pemain 2: ${player2Score}/10.<br>Jangan putus asa, kedua-dua perlu dapat 10/10! 😄<br><button class="cta-button" onclick="startQuiz(${currentQuiz}, 'multi')">Cuba Lagi</button>`;
+                }
             }
         }
 
@@ -1135,12 +1279,24 @@
         function showCongrats() {
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('mode-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'flex';
+            const congratsTitle = document.getElementById('congrats-title');
+            const congratsMessage = document.getElementById('congrats-message');
             const nextLevelBtn = document.getElementById('next-level-btn');
+
+            if (gameMode === 'solo') {
+                congratsTitle.innerText = "Tahniah! 10/10!";
+                congratsMessage.innerText = "Kamu hebat! Semua soalan betul! 🎉 Nak main tahap seterusnya?";
+            } else {
+                congratsTitle.innerText = "Tahniah! 10/10 Berdua!";
+                congratsMessage.innerText = "Kamu berdua hebat! Semua soalan betul! 🎉 Nak main tahap seterusnya?";
+            }
+
             if (currentQuiz < 10) {
                 nextLevelBtn.innerText = `Main Tahap ${currentQuiz + 1}!`;
-                nextLevelBtn.onclick = () => startQuiz(currentQuiz + 1);
+                nextLevelBtn.onclick = () => startQuiz(currentQuiz + 1, gameMode);
             } else {
                 nextLevelBtn.innerText = "Tahniah! Semua Tahap Selesai!";
                 nextLevelBtn.onclick = () => showIntro();
