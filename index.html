@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Seru Budak-Budak</title>
+    <title>Kuiz Seronok untuk Kanak-Kanak</title>
     <style>
         * {
             margin: 0;
@@ -379,31 +379,31 @@
     <div id="landing-page">
         <div class="landing-container">
             <div class="landing-header">
-                <h1>Kuis Seru untuk Budak-Budak!</h1>
-                <p>Ayo main kuis yang bikin ketawa dan tambah pinter! 😄</p>
-                <button class="cta-button" onclick="showIntro()">Mulai Kuis Sekarang!</button>
+                <h1>Kuiz Seronok untuk Kanak-Kanak!</h1>
+                <p>Jom main kuiz yang buat kita ketawa dan tambah bijak! 😄</p>
+                <button class="cta-button" onclick="showIntro()">Mulakan Kuiz Sekarang!</button>
             </div>
 
             <div class="features">
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/star--v1.png" alt="Bintang">
-                    <h3>Soal Gampang</h3>
-                    <p>Kuis yang pas buat semua umur, seru dan nggak bikin bingung!</p>
+                    <h3>Soalan Mudah</h3>
+                    <p>Kuiz sesuai untuk semua umur, seronok dan tak pening!</p>
                 </div>
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/gift--v1.png" alt="Hadiah">
-                    <h3>Hadiah Keren</h3>
-                    <p>Main kuis, dapatkan poin, dan tukar dengan hadiah lucu!</p>
+                    <h3>Hadiah Menarik</h3>
+                    <p>Main kuiz, kumpul mata, dan tukar dengan hadiah comel!</p>
                 </div>
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
-                    <h3>Belajar Sambil Main</h3>
-                    <p>Tambah pengetahuan sambil bersenang-senang!</p>
+                    <h3>Belajar Sambil Bermain</h3>
+                    <p>Tambah ilmu sambil bersuka ria!</p>
                 </div>
             </div>
 
             <div class="landing-footer">
-                <p>© 2025 Kuis Budak-Budak. Yuk, main bareng temen!</p>
+                <p>© 2025 Kuiz Kanak-Kanak. Jom main dengan kawan-kawan!</p>
             </div>
         </div>
     </div>
@@ -411,16 +411,16 @@
     <!-- Intro Page -->
     <div id="intro-page">
         <div class="intro-container">
-            <h1 class="intro-title">Kuis Seru untuk Budak-Budak!</h1>
-            <p class="intro-subtitle">Ayo main kuis yang bikin ketawa dan tambah pinter! 😄</p>
-            <button class="intro-button" onclick="startQuiz(1)">Ayo Mulai!</button>
+            <h1 class="intro-title">Kuiz Seronok untuk Kanak-Kanak!</h1>
+            <p class="intro-subtitle">Jom main kuiz yang buat kita ketawa dan tambah bijak! 😄</p>
+            <button class="intro-button" onclick="startQuiz(1)">Mula Sekarang!</button>
         </div>
     </div>
 
     <!-- Quiz Page -->
     <div id="quiz-page">
         <div class="quiz-container">
-            <h1>Kuis Seru Budak-Budak!</h1>
+            <h1>Kuiz Seronok Kanak-Kanak!</h1>
             <div id="question"></div>
             <div id="options"></div>
             <div id="feedback"></div>
@@ -434,121 +434,538 @@
         <canvas id="confetti-canvas"></canvas>
         <div class="congrats-container">
             <h1 class="congrats-title">Tahniah! 10/10!</h1>
-            <p class="congrats-message">Kamu hebat! Semua soalan betul! 🎉 Mahu cuba kuis baru?</p>
-            <button class="next-quiz-button" onclick="startQuiz(2)">Main Kuis Baru!</button>
+            <p class="congrats-message">Kamu hebat! Semua soalan betul! 🎉 Nak cuba tahap seterusnya?</p>
+            <button class="next-quiz-button" id="next-level-btn">Main Tahap Seterusnya!</button>
         </div>
     </div>
 
     <script>
-        // Quiz Data
-        const quiz1Questions = [
-            {
-                question: "Apa warna langit pada hari cerah?",
-                options: ["Merah", "Biru", "Hijau", "Kuning"],
-                answer: "Biru"
-            },
-            {
-                question: "Berapa kaki seekor kucing?",
-                options: ["Dua", "Tiga", "Empat", "Lima"],
-                answer: "Empat"
-            },
-            {
-                question: "Buah yang selalu jadi penutup?",
-                options: ["Apel", "Pisang", "Tomat", "Anggur"],
-                answer: "Tomat"
-            },
-            {
-                question: "Hewan yang paling genit?",
-                options: ["Semute", "Semute gatal", "Semute api", "Semute manja"],
-                answer: "Semute manja"
-            },
-            {
-                question: "Apa nama planet tempat kita tinggal?",
-                options: ["Mars", "Bumi", "Jupiter", "Venus"],
-                answer: "Bumi"
-            },
-            {
-                question: "Bunga yang paling cantik?",
-                options: ["Mawar", "Melati", "Anggrek", "Matahari"],
-                answer: "Mawar"
-            },
-            {
-                question: "Berapa jumlah roda pada basikal?",
-                options: ["Satu", "Dua", "Tiga", "Empat"],
-                answer: "Dua"
-            },
-            {
-                question: "Hewan yang paling pendiam?",
-                options: ["Gajah", "Semute", "Singa", "Burung"],
-                answer: "Semute"
-            },
-            {
-                question: "Apa yang selalu ada di akhir pelangi?",
-                options: ["Emas", "Pelangi lain", "Awan", "Matahari"],
-                answer: "Emas"
-            },
-            {
-                question: "Alat untuk menulis di papan tulis?",
-                options: ["Pensil", "Pen", "Kapur", "Spidol"],
-                answer: "Kapur"
-            }
-        ];
-
-        const quiz2Questions = [
-            {
-                question: "Hewan yang paling besar di dunia?",
-                options: ["Gajah", "Paus biru", "Badak", "Jerapah"],
-                answer: "Paus biru"
-            },
-            {
-                question: "Apa warna daun pada musim panas?",
-                options: ["Merah", "Kuning", "Hijau", "Oren"],
-                answer: "Hijau"
-            },
-            {
-                question: "Berapa jari di satu tangan manusia?",
-                options: ["Tiga", "Empat", "Lima", "Enam"],
-                answer: "Lima"
-            },
-            {
-                question: "Buah yang paling manis?",
-                options: ["Lemon", "Mangga", "Cili", "Betik"],
-                answer: "Mangga"
-            },
-            {
-                question: "Apa yang terbang tanpa sayap?",
-                options: ["Burung", "Masa", "Kapal terbang", "Helikopter"],
-                answer: "Masa"
-            },
-            {
-                question: "Binatang yang paling cepat berlari?",
-                options: ["Kucing", "Cheetah", "Anjing", "Kuda"],
-                answer: "Cheetah"
-            },
-            {
-                question: "Apa nama bulan pertama dalam setahun?",
-                options: ["Mac", "Januari", "Julai", "Disember"],
-                answer: "Januari"
-            },
-            {
-                question: "Alat muzik yang dimainkan dengan tiup?",
-                options: ["Gitar", "Piano", "Seruling", "Drum"],
-                answer: "Seruling"
-            },
-            {
-                question: "Apa yang selalu basah walaupun kering?",
-                options: ["Baju", "Tuala", "Air", "Kertas"],
-                answer: "Tuala"
-            },
-            {
-                question: "Sayuran yang berwarna ungu?",
-                options: ["Kobis ungu", "Bayam", "Kacang", "Timun"],
-                answer: "Kobis ungu"
-            }
-        ];
+        // Quiz Data for All Levels
+        const quizData = {
+            1: [
+                {
+                    question: "Apa warna langit pada hari cerah?",
+                    options: ["Merah", "Biru", "Hijau", "Kuning"],
+                    answer: "Biru"
+                },
+                {
+                    question: "Berapa kaki seekor kucing?",
+                    options: ["Dua", "Tiga", "Empat", "Lima"],
+                    answer: "Empat"
+                },
+                {
+                    question: "Buah yang selalu jadi penutup?",
+                    options: ["Epal", "Pisang", "Tomato", "Anggur"],
+                    answer: "Tomato"
+                },
+                {
+                    question: "Haiwan yang paling genit?",
+                    options: ["Semute", "Semute gatal", "Semute api", "Semute manja"],
+                    answer: "Semute manja"
+                },
+                {
+                    question: "Apa nama planet tempat kita tinggal?",
+                    options: ["Marikh", "Bumi", "Musytari", "Zuhrah"],
+                    answer: "Bumi"
+                },
+                {
+                    question: "Bunga yang paling cantik?",
+                    options: ["Mawar", "Melati", "Orkid", "Matahari"],
+                    answer: "Mawar"
+                },
+                {
+                    question: "Berapa bilangan roda pada basikal?",
+                    options: ["Satu", "Dua", "Tiga", "Empat"],
+                    answer: "Dua"
+                },
+                {
+                    question: "Haiwan yang paling pendiam?",
+                    options: ["Gajah", "Semute", "Singa", "Burung"],
+                    answer: "Semute"
+                },
+                {
+                    question: "Apa yang selalu ada di hujung pelangi?",
+                    options: ["Emas", "Pelangi lain", "Awan", "Matahari"],
+                    answer: "Emas"
+                },
+                {
+                    question: "Alat untuk menulis di papan putih?",
+                    options: ["Pensel", "Pen", "Kapur", "Penanda"],
+                    answer: "Kapur"
+                }
+            ],
+            2: [
+                {
+                    question: "Haiwan yang paling besar di dunia?",
+                    options: ["Gajah", "Paus biru", "Badak", "Zirafah"],
+                    answer: "Paus biru"
+                },
+                {
+                    question: "Apa warna daun pada musim panas?",
+                    options: ["Merah", "Kuning", "Hijau", "Oren"],
+                    answer: "Hijau"
+                },
+                {
+                    question: "Berapa jari di satu tangan manusia?",
+                    options: ["Tiga", "Empat", "Lima", "Enam"],
+                    answer: "Lima"
+                },
+                {
+                    question: "Buah yang paling manis?",
+                    options: ["Lemon", "Mangga", "Cili", "Betik"],
+                    answer: "Mangga"
+                },
+                {
+                    question: "Apa yang terbang tanpa sayap?",
+                    options: ["Burung", "Masa", "Kapal terbang", "Helikopter"],
+                    answer: "Masa"
+                },
+                {
+                    question: "Haiwan yang paling pantas berlari?",
+                    options: ["Kucing", "Cita", "Anjing", "Kuda"],
+                    answer: "Cita"
+                },
+                {
+                    question: "Apa nama bulan pertama dalam setahun?",
+                    options: ["Mac", "Januari", "Julai", "Disember"],
+                    answer: "Januari"
+                },
+                {
+                    question: "Alat muzik yang dimainkan dengan tiup?",
+                    options: ["Gitar", "Piano", "Seruling", "Dram"],
+                    answer: "Seruling"
+                },
+                {
+                    question: "Apa yang selalu basah walaupun kering?",
+                    options: ["Baju", "Tuala", "Air", "Kertas"],
+                    answer: "Tuala"
+                },
+                {
+                    question: "Sayuran yang berwarna ungu?",
+                    options: ["Kobis ungu", "Bayam", "Kacang", "Timun"],
+                    answer: "Kobis ungu"
+                }
+            ],
+            3: [
+                {
+                    question: "Apa nama bendera Malaysia?",
+                    options: ["Jalur Gemilang", "Bunga Raya", "Harimau Malaya", "Sang Saka"],
+                    answer: "Jalur Gemilang"
+                },
+                {
+                    question: "Berapa kaki seekor labah-labah?",
+                    options: ["Empat", "Lapan", "Enam", "Sepuluh"],
+                    answer: "Lapan"
+                },
+                {
+                    question: "Buah yang dikenali sebagai 'Raja Buah'?",
+                    options: ["Durian", "Rambutan", "Manggis", "Nanas"],
+                    answer: "Durian"
+                },
+                {
+                    question: "Haiwan yang suka makan buluh?",
+                    options: ["Panda", "Koala", "Beruang", "Harimau"],
+                    answer: "Panda"
+                },
+                {
+                    question: "Apa warna bunga kebangsaan Malaysia?",
+                    options: ["Kuning", "Merah", "Putih", "Ungu"],
+                    answer: "Merah"
+                },
+                {
+                    question: "Berapa hari dalam seminggu?",
+                    options: ["Lima", "Enam", "Tujuh", "Lapan"],
+                    answer: "Tujuh"
+                },
+                {
+                    question: "Alat untuk mengukur panjang?",
+                    options: ["Pembaris", "Termometer", "Jam", "Timbang"],
+                    answer: "Pembaris"
+                },
+                {
+                    question: "Haiwan yang paling tinggi?",
+                    options: ["Gajah", "Zirafah", "Kuda", "Unta"],
+                    answer: "Zirafah"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk melihat bintang di langit?",
+                    options: ["Mikroskop", "Teleskop", "Kamera", "Kaca mata"],
+                    answer: "Teleskop"
+                },
+                {
+                    question: "Sayuran yang digunakan dalam nasi goreng?",
+                    options: ["Kubis", "Brokoli", "Lobak merah", "Zukini"],
+                    answer: "Lobak merah"
+                }
+            ],
+            4: [
+                {
+                    question: "Apa ibu kota Malaysia?",
+                    options: ["Kuala Lumpur", "Johor Bahru", "Penang", "Melaka"],
+                    answer: "Kuala Lumpur"
+                },
+                {
+                    question: "Berapa ekor kaki pada lebah?",
+                    options: ["Empat", "Lima", "Enam", "Tujuh"],
+                    answer: "Enam"
+                },
+                {
+                    question: "Buah yang berwarna kuning dan panjang?",
+                    options: ["Pisang", "Nanas", "Mangga", "Betik"],
+                    answer: "Pisang"
+                },
+                {
+                    question: "Haiwan yang tinggal di dalam air dan bernafas dengan insang?",
+                    options: ["Katak", "Ikan", "Buaya", "Penyu"],
+                    answer: "Ikan"
+                },
+                {
+                    question: "Apa warna awan pada hari hujan?",
+                    options: ["Putih", "Kelabu", "Biru", "Kuning"],
+                    answer: "Kelabu"
+                },
+                {
+                    question: "Berapa sisi pada segi tiga?",
+                    options: ["Dua", "Tiga", "Empat", "Lima"],
+                    answer: "Tiga"
+                },
+                {
+                    question: "Alat muzik yang mempunyai tali?",
+                    options: ["Gitar", "Dram", "Seruling", "Piano"],
+                    answer: "Gitar"
+                },
+                {
+                    question: "Haiwan yang terkenal dengan belangnya?",
+                    options: ["Harimau", "Zebra", "Singa", "Cita"],
+                    answer: "Zebra"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk melindungi kepala dari hujan?",
+                    options: ["Payung", "Topi", "Selendang", "Jaket"],
+                    answer: "Payung"
+                },
+                {
+                    question: "Sayuran yang sering dijadikan sup?",
+                    options: ["Bayam", "Kentang", "Kacang panjang", "Terung"],
+                    answer: "Kentang"
+                }
+            ],
+            5: [
+                {
+                    question: "Apa nama gunung tertinggi di Malaysia?",
+                    options: ["Gunung Kinabalu", "Gunung Tahan", "Gunung Ledang", "Gunung Jerai"],
+                    answer: "Gunung Kinabalu"
+                },
+                {
+                    question: "Berapa kaki pada kumbang?",
+                    options: ["Empat", "Lima", "Enam", "Lapan"],
+                    answer: "Enam"
+                },
+                {
+                    question: "Buah yang dikenali sebagai 'ratu buah'?",
+                    options: ["Manggis", "Durian", "Rambutan", "Cempedak"],
+                    answer: "Manggis"
+                },
+                {
+                    question: "Haiwan yang boleh menukar warna kulit?",
+                    options: ["Katak", "Sotong", "Bunglon", "Ular"],
+                    answer: "Bunglon"
+                },
+                {
+                    question: "Apa warna bunga matahari?",
+                    options: ["Merah", "Kuning", "Biru", "Ungu"],
+                    answer: "Kuning"
+                },
+                {
+                    question: "Berapa sisi pada segi empat sama?",
+                    options: ["Tiga", "Empat", "Lima", "Enam"],
+                    answer: "Empat"
+                },
+                {
+                    question: "Alat untuk mengira masa?",
+                    options: ["Pembaris", "Jam", "Termometer", "Timbang"],
+                    answer: "Jam"
+                },
+                {
+                    question: "Haiwan yang terkenal kerana tidur lama?",
+                    options: ["Beruang", "Kucing", "Anjing", "Arnab"],
+                    answer: "Beruang"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk menyalakan lampu?",
+                    options: ["Suis", "Bateri", "Kabel", "Plag"],
+                    answer: "Suis"
+                },
+                {
+                    question: "Sayuran yang berbentuk seperti bunga?",
+                    options: ["Kubis", "Brokoli", "Sawi", "Kacang"],
+                    answer: "Brokoli"
+                }
+            ],
+            6: [
+                {
+                    question: "Apa nama pulau terbesar di Malaysia?",
+                    options: ["Pulau Pinang", "Pulau Langkawi", "Pulau Borneo", "Pulau Tioman"],
+                    answer: "Pulau Borneo"
+                },
+                {
+                    question: "Berapa sayap pada burung?",
+                    options: ["Satu", "Dua", "Tiga", "Empat"],
+                    answer: "Dua"
+                },
+                {
+                    question: "Buah yang selalu ada dalam kuih tradisional?",
+                    options: ["Kelapa", "Epal", "Oren", "Anggur"],
+                    answer: "Kelapa"
+                },
+                {
+                    question: "Haiwan yang suka melompat di pokok?",
+                    options: ["Monyet", "Harimau", "Gajah", "Badak"],
+                    answer: "Monyet"
+                },
+                {
+                    question: "Apa warna darah manusia?",
+                    options: ["Biru", "Merah", "Hijau", "Kuning"],
+                    answer: "Merah"
+                },
+                {
+                    question: "Berapa sisi pada bulatan?",
+                    options: ["Sifar", "Satu", "Dua", "Tiga"],
+                    answer: "Sifar"
+                },
+                {
+                    question: "Alat muzik yang dimainkan dengan pukul?",
+                    options: ["Seruling", "Dram", "Gitar", "Piano"],
+                    answer: "Dram"
+                },
+                {
+                    question: "Haiwan yang paling kuat di hutan?",
+                    options: ["Singa", "Gajah", "Badak", "Beruang"],
+                    answer: "Gajah"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk menjahit pakaian?",
+                    options: ["Jarum", "Gunting", "Pita", "Kertas"],
+                    answer: "Jarum"
+                },
+                {
+                    question: "Sayuran yang selalu ada dalam salad?",
+                    options: ["Timun", "Sawi", "Labu", "Peria"],
+                    answer: "Timun"
+                }
+            ],
+            7: [
+                {
+                    question: "Apa nama sungai terpanjang di Malaysia?",
+                    options: ["Sungai Rajang", "Sungai Kinabatangan", "Sungai Pahang", "Sungai Perak"],
+                    answer: "Sungai Rajang"
+                },
+                {
+                    question: "Berapa kaki pada lipas?",
+                    options: ["Empat", "Lima", "Enam", "Lapan"],
+                    answer: "Enam"
+                },
+                {
+                    question: "Buah yang selalu dimakan dengan kulitnya?",
+                    options: ["Anggur", "Nanas", "Betik", "Durian"],
+                    answer: "Anggur"
+                },
+                {
+                    question: "Haiwan yang terkenal kerana berenang perlahan?",
+                    options: ["Penyu", "Ikan lumba-lumba", "Jerung", "Paus"],
+                    answer: "Penyu"
+                },
+                {
+                    question: "Apa warna bulan pada waktu malam?",
+                    options: ["Kuning", "Merah", "Hijau", "Biru"],
+                    answer: "Kuning"
+                },
+                {
+                    question: "Berapa sisi pada segi lapan?",
+                    options: ["Lima", "Enam", "Tujuh", "Lapan"],
+                    answer: "Lapan"
+                },
+                {
+                    question: "Alat untuk menimbang berat?",
+                    options: ["Pembaris", "Termometer", "Timbang", "Jam"],
+                    answer: "Timbang"
+                },
+                {
+                    question: "Haiwan yang suka makan madu?",
+                    options: ["Beruang", "Semute", "Lebah", "Harimau"],
+                    answer: "Beruang"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk melindungi tangan semasa memasak?",
+                    options: ["Sarung tangan", "Apron", "Topi", "Kain"],
+                    answer: "Sarung tangan"
+                },
+                {
+                    question: "Sayuran yang selalu digunakan dalam sate?",
+                    options: ["Bawang", "Kubis", "Sawi", "Kacang"],
+                    answer: "Bawang"
+                }
+            ],
+            8: [
+                {
+                    question: "Apa nama tarian tradisional Malaysia?",
+                    options: ["Joget", "Bharatanatyam", "Lion Dance", "Kathak"],
+                    answer: "Joget"
+                },
+                {
+                    question: "Berapa sayap pada rama-rama?",
+                    options: ["Dua", "Empat", "Enam", "Lapan"],
+                    answer: "Empat"
+                },
+                {
+                    question: "Buah yang selalu ada dalam jam?",
+                    options: ["Epal", "Nanas", "Strawberi", "Betik"],
+                    answer: "Strawberi"
+                },
+                {
+                    question: "Haiwan yang terkenal kerana ekor panjangnya?",
+                    options: ["Monyet", "Kucing", "Tupai", "Burung"],
+                    answer: "Monyet"
+                },
+                {
+                    question: "Apa warna matahari pada waktu pagi?",
+                    options: ["Merah", "Kuning", "Biru", "Hijau"],
+                    answer: "Kuning"
+                },
+                {
+                    question: "Berapa sisi pada segi lima?",
+                    options: ["Tiga", "Empat", "Lima", "Enam"],
+                    answer: "Lima"
+                },
+                {
+                    question: "Alat muzik yang dimainkan dengan petik?",
+                    options: ["Piano", "Ukulele", "Dram", "Seruling"],
+                    answer: "Ukulele"
+                },
+                {
+                    question: "Haiwan yang suka tidur terbalik?",
+                    options: ["Kelawar", "Kucing", "Anjing", "Burung"],
+                    answer: "Kelawar"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk menyapu lantai?",
+                    options: ["Berus", "Penyapu", "Kain", "Span"],
+                    answer: "Penyapu"
+                },
+                {
+                    question: "Sayuran yang berwarna oren?",
+                    options: ["Lobak merah", "Bayam", "Kubis", "Sawi"],
+                    answer: "Lobak merah"
+                }
+            ],
+            9: [
+                {
+                    question: "Apa nama kuih tradisional Malaysia?",
+                    options: ["Kuih Lapis", "Pizza", "Donut", "Croissant"],
+                    answer: "Kuih Lapis"
+                },
+                {
+                    question: "Berapa kaki pada katak?",
+                    options: ["Dua", "Tiga", "Empat", "Lima"],
+                    answer: "Empat"
+                },
+                {
+                    question: "Buah yang selalu ada dalam air sirap?",
+                    options: ["Laici", "Durian", "Nanas", "Betik"],
+                    answer: "Laici"
+                },
+                {
+                    question: "Haiwan yang terkenal kerana paruhnya?",
+                    options: ["Burung", "Kucing", "Anjing", "Arnab"],
+                    answer: "Burung"
+                },
+                {
+                    question: "Apa warna bintang di langit malam?",
+                    options: ["Merah", "Kuning", "Hijau", "Biru"],
+                    answer: "Kuning"
+                },
+                {
+                    question: "Berapa sisi pada segi enam?",
+                    options: ["Empat", "Lima", "Enam", "Tujuh"],
+                    answer: "Enam"
+                },
+                {
+                    question: "Alat untuk memotong kertas?",
+                    options: ["Gunting", "Pembaris", "Pen", "Berus"],
+                    answer: "Gunting"
+                },
+                {
+                    question: "Haiwan yang paling genit di laut?",
+                    options: ["Ikan", "Sotong", "Ubur-ubur", "Penyu"],
+                    answer: "Ubur-ubur"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk melindungi badan dari hujan?",
+                    options: ["Jaket", "Payung", "Topi", "Baju hujan"],
+                    answer: "Baju hujan"
+                },
+                {
+                    question: "Sayuran yang selalu ada dalam tomyam?",
+                    options: ["Bawang", "Kubis", "Cendawan", "Sawi"],
+                    answer: "Cendawan"
+                }
+            ],
+            10: [
+                {
+                    question: "Apa nama haiwan kebangsaan Malaysia?",
+                    options: ["Harimau", "Gajah", "Badak", "Orang Utan"],
+                    answer: "Harimau"
+                },
+                {
+                    question: "Berapa sayap pada lebah?",
+                    options: ["Dua", "Empat", "Enam", "Lapan"],
+                    answer: "Empat"
+                },
+                {
+                    question: "Buah yang terkenal di Terengganu?",
+                    options: ["Nanas", "Rambutan", "Cempedak", "Durian"],
+                    answer: "Rambutan"
+                },
+                {
+                    question: "Haiwan yang terkenal kerana tanduknya?",
+                    options: ["Badak", "Kambing", "Rusa", "Kerbau"],
+                    answer: "Badak"
+                },
+                {
+                    question: "Apa warna laut pada hari cerah?",
+                    options: ["Merah", "Kuning", "Biru", "Hijau"],
+                    answer: "Biru"
+                },
+                {
+                    question: "Berapa sisi pada segi tujuh?",
+                    options: ["Lima", "Enam", "Tujuh", "Lapan"],
+                    answer: "Tujuh"
+                },
+                {
+                    question: "Alat muzik yang dimainkan dengan tekan?",
+                    options: ["Piano", "Gitar", "Dram", "Seruling"],
+                    answer: "Piano"
+                },
+                {
+                    question: "Haiwan yang suka makan rumput?",
+                    options: ["Kambing", "Harimau", "Singa", "Ular"],
+                    answer: "Kambing"
+                },
+                {
+                    question: "Apa yang kita gunakan untuk menutup tingkap?",
+                    options: ["Langsir", "Kain", "Kertas", "Papan"],
+                    answer: "Langsir"
+                },
+                {
+                    question: "Sayuran yang selalu dimakan mentah?",
+                    options: ["Kubis", "Kentang", "Brokoli", "Labu"],
+                    answer: "Kubis"
+                }
+            ]
+        };
 
         let currentQuiz = 1;
-        let currentQuestions = quiz1Questions;
+        let currentQuestions = quizData[1];
         let currentQuestion = 0;
         let score = 0;
 
@@ -562,7 +979,7 @@
 
         function startQuiz(quizNumber) {
             currentQuiz = quizNumber;
-            currentQuestions = quizNumber === 1 ? quiz1Questions : quiz2Questions;
+            currentQuestions = quizData[quizNumber];
             currentQuestion = 0;
             score = 0;
             document.getElementById('landing-page').style.display = 'none';
@@ -602,12 +1019,12 @@
             countdown.style.display = 'block';
 
             if (selected === q.answer) {
-                feedback.innerText = "Yeay! Betul sekali! 🎉";
+                feedback.innerText = "Yay! Betul! 🎉";
                 feedback.style.backgroundColor = '#e8f5e9';
                 feedback.style.color = '#4caf50';
                 score++;
             } else {
-                feedback.innerText = `Oops! Salah. Jawapan betul ialah "${q.answer}".`;
+                feedback.innerText = `Alamak! Salah. Jawapan betul ialah "${q.answer}".`;
                 feedback.style.backgroundColor = '#fce4ec';
                 feedback.style.color = '#d81b60';
             }
@@ -655,6 +1072,14 @@
             document.getElementById('intro-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'flex';
+            const nextLevelBtn = document.getElementById('next-level-btn');
+            if (currentQuiz < 10) {
+                nextLevelBtn.innerText = `Main Tahap ${currentQuiz + 1}!`;
+                nextLevelBtn.onclick = () => startQuiz(currentQuiz + 1);
+            } else {
+                nextLevelBtn.innerText = "Tahniah! Semua Tahap Selesai!";
+                nextLevelBtn.onclick = () => showIntro();
+            }
             startConfetti();
         }
 
