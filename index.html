@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Sejarah SPM - Modul Latihan Berfokus</title>
+    <title>Quiz Sejarah SPM - Contoh Soalan</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #f5f6f5; /* Kelabu lembut seperti kertas SPM */
+            background-color: #f5f6f5;
             color: #1a252f;
         }
 
@@ -26,8 +26,8 @@
         header {
             text-align: center;
             padding: 40px 20px;
-            background-color: #e6ecef; /* Kelabu terang untuk header */
-            border-bottom: 3px solid #003087; /* Biru rasmi SPM */
+            background-color: #e6ecef;
+            border-bottom: 3px solid #003087;
             margin-bottom: 30px;
         }
 
@@ -50,19 +50,17 @@
             border-radius: 8px;
             margin-bottom: 40px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
 
-        .hero-text h2 {
+        .hero h2 {
             font-size: 1.8em;
             color: #003087;
             margin-bottom: 15px;
-            border-bottom: 2px solid #ccd6dd;
-            padding-bottom: 5px;
         }
 
-        .hero-text p {
+        .hero p {
             font-size: 1em;
-            line-height: 1.6;
             color: #4a5b6a;
             margin-bottom: 20px;
         }
@@ -121,17 +119,47 @@
             font-weight: bold;
         }
 
-        .quiz-card p {
-            font-size: 0.95em;
+        .quiz-card .question {
+            font-size: 1em;
             color: #4a5b6a;
             margin-bottom: 15px;
             line-height: 1.5;
         }
 
-        .quiz-card a {
+        .quiz-card .options {
+            margin-bottom: 15px;
+        }
+
+        .quiz-card .options div {
+            margin: 5px 0;
+        }
+
+        .quiz-card .answer {
+            display: none;
+            font-size: 0.95em;
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quiz-card .toggle-answer {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .quiz-card .toggle-answer:hover {
+            background-color: #0056b3;
+        }
+
+        .quiz-card .start-quiz {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #28a745;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -139,8 +167,8 @@
             font-weight: bold;
         }
 
-        .quiz-card a:hover {
-            background-color: #0056b3;
+        .quiz-card .start-quiz:hover {
+            background-color: #218838;
         }
 
         footer {
@@ -171,46 +199,83 @@
     <div class="container">
         <header>
             <h1>Quiz Sejarah SPM</h1>
-            <p>Latihan Modul Berfokus untuk Kejayaan Peperiksaan Anda</p>
+            <p>Pratonton Contoh Soalan untuk Persediaan Peperiksaan Anda</p>
         </header>
 
         <section class="hero">
-            <div class="hero-text">
-                <h2>Persediaan Terbaik untuk Sejarah SPM</h2>
-                <p>
-                    Tingkatkan kemahiran menjawab soalan Sejarah SPM dengan latihan quiz kami yang direka mengikut format peperiksaan sebenar. Setiap modul merangkumi topik silabus SPM seperti Sejarah Malaysia dan Dunia, membantu anda menguasai fakta dan teknik menjawab.
-                </p>
-                <a href="#quiz-list" class="cta-button">Mulai Latihan</a>
-            </div>
+            <h2>Cuba Contoh Soalan Sejarah SPM</h2>
+            <p>
+                Lihat contoh soalan dari setiap modul quiz kami yang direka mengikut silabus SPM. Klik untuk menunjukkan jawapan dan mulakan latihan penuh untuk meningkatkan persediaan anda!
+            </p>
+            <a href="#quiz-list" class="cta-button">Lihat Contoh Soalan</a>
         </section>
 
         <section class="quiz-list" id="quiz-list">
-            <h2>Modul Quiz Sejarah SPM</h2>
+            <h2>Contoh Soalan Modul Quiz</h2>
             <div class="quiz-grid">
                 <div class="quiz-card">
                     <h3>Bahagian A: Sejarah Awal Malaysia</h3>
-                    <p>Latihan soalan objektif dan struktur berkaitan kerajaan awal seperti Melaka, Srivijaya, dan pengaruh Hindu-Buddha.</p>
-                    <a href="#quiz1">Mulai Quiz</a>
+                    <div class="question">Apakah nama kerajaan yang menjadi pusat perdagangan antarabangsa pada abad ke-15 di Asia Tenggara?</div>
+                    <div class="options">
+                        <div>A. Srivijaya</div>
+                        <div>B. Majapahit</div>
+                        <div>C. Melaka</div>
+                        <div>D. Langkasuka</div>
+                    </div>
+                    <div class="answer">Jawapan: C. Melaka</div>
+                    <button class="toggle-answer">Tunjuk Jawapan</button>
+                    <a href="#quiz1" class="start-quiz">Mulai Quiz Penuh</a>
                 </div>
                 <div class="quiz-card">
                     <h3>Bahagian B: Penjajahan dan Kemerdekaan</h3>
-                    <p>Soalan struktur dan KBAT mengenai era penjajahan British, Jepun, dan perjuangan kemerdekaan Malaysia.</p>
-                    <a href="#quiz2">Mulai Quiz</a>
+                    <div class="question">Nyatakan tiga sebab rakyat Tanah Melayu menentang Malayan Union.</div>
+                    <div class="answer">Jawapan: 
+                        <ul>
+                            <li>Kuasa Sultan dihapuskan.</li>
+                            <li>Kewarganegaraan jus soli dianggap mengancam hak Melayu.</li>
+                            <li>Pentadbiran British mengabaikan identiti budaya Melayu.</li>
+                        </ul>
+                    </div>
+                    <button class="toggle-answer">Tunjuk Jawapan</button>
+                    <a href="#quiz2" class="start-quiz">Mulai Quiz Penuh</a>
                 </div>
                 <div class="quiz-card">
                     <h3>Bahagian C: Pembentukan Malaysia</h3>
-                    <p>Soalan berkaitan pembentukan Malaysia 1963, Konfrontasi, dan perkembangan politik awal.</p>
-                    <a href="#quiz3">Mulai Quiz</a>
+                    <div class="question">Bilakah Malaysia ditubuhkan secara rasmi?</div>
+                    <div class="options">
+                        <div>A. 31 Ogos 1957</div>
+                        <div>B. 16 September 1963</div>
+                        <div>C. 9 Ogos 1965</div>
+                        <div>D. 15 November 1961</div>
+                    </div>
+                    <div class="answer">Jawapan: B. 16 September 1963</div>
+                    <button class="toggle-answer">Tunjuk Jawapan</button>
+                    <a href="#quiz3" class="start-quiz">Mulai Quiz Penuh</a>
                 </div>
                 <div class="quiz-card">
                     <h3>Bahagian D: Sejarah Dunia Moden</h3>
-                    <p>Latihan merangkumi Perang Dunia, Perang Dingin, dan isu global lain dalam silabus SPM.</p>
-                    <a href="#quiz4">Mulai Quiz</a>
+                    <div class="question">Jelaskan dua sebab meletusnya Perang Dingin.</div>
+                    <div class="answer">Jawapan: 
+                        <ul>
+                            <li>Perbezaan ideologi antara kapitalisme dan komunisme.</li>
+                            <li>Persaingan ketenteraan antara Amerika Syarikat dan Soviet Union.</li>
+                        </ul>
+                    </div>
+                    <button class="toggle-answer">Tunjuk Jawapan</button>
+                    <a href="#quiz4" class="start-quiz">Mulai Quiz Penuh</a>
                 </div>
                 <div class="quiz-card">
                     <h3>Bahagian E: Latihan Menyeluruh</h3>
-                    <p>Kombinasi soalan objektif, struktur, dan KBAT dari semua topik untuk simulasi peperiksaan sebenar.</p>
-                    <a href="#quiz5">Mulai Quiz</a>
+                    <div class="question">Mengapa pendidikan penting dalam memupuk kesedaran nasionalisme di Tanah Melayu?</div>
+                    <div class="answer">Jawapan: 
+                        <ul>
+                            <li>Pendidikan Melayu menghasilkan golongan intelektual yang menentang penjajahan.</li>
+                            <li>Sekolah vernakular meningkatkan kesedaran identiti kaum.</li>
+                            <li>Pertubuhan seperti Kesatuan Melayu Muda dipengaruhi oleh pelajar terpelajar.</li>
+                        </ul>
+                    </div>
+                    <button class="toggle-answer">Tunjuk Jawapan</button>
+                    <a href="#quiz5" class="start-quiz">Mulai Quiz Penuh</a>
                 </div>
             </div>
         </section>
@@ -219,5 +284,20 @@
             <p>© 2025 Quiz Sejarah SPM. Dibangunkan untuk Pelajar Cemerlang.</p>
         </footer>
     </div>
+
+    <script>
+        document.querySelectorAll('.toggle-answer').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.previousElementSibling;
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    button.textContent = 'Tunjuk Jawapan';
+                } else {
+                    answer.style.display = 'block';
+                    button.textContent = 'Sembunyi Jawapan';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
