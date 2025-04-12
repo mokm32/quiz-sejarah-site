@@ -197,6 +197,105 @@
             transform: scale(1.1);
         }
 
+        /* Avatar Selection Page Styles */
+        #avatar-page {
+            display: none;
+            background: linear-gradient(135deg, #ff9800, #ff4081);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .avatar-container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .avatar-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #ffeb3b;
+            text-shadow: 2px 2px #d81b60;
+            margin-bottom: 20px;
+        }
+
+        .avatar-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .avatar-option {
+            background: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: clamp(2rem, 5vw, 3rem);
+            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .avatar-option:hover {
+            transform: scale(1.2);
+        }
+
+        .avatar-option.selected {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        /* Room Selection Page Styles */
+        #room-page {
+            display: none;
+            background: linear-gradient(135deg, #3f51b5, #2196f3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .room-container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .room-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #ffeb3b;
+            text-shadow: 2px 2px #d81b60;
+            margin-bottom: 20px;
+        }
+
+        .room-input {
+            padding: 10px;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            border-radius: 10px;
+            border: none;
+            margin: 10px;
+            width: clamp(200px, 80%, 400px);
+        }
+
+        .room-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+        }
+
+        .room-button:hover {
+            background-color: #388e3c;
+            transform: scale(1.1);
+        }
+
         /* Quiz Page Styles */
         #quiz-page {
             display: none;
@@ -224,6 +323,15 @@
             font-size: clamp(1rem, 3vw, 1.5rem);
             margin-bottom: 20px;
             color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .question-icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            animation: bounce 2s infinite;
         }
 
         .player-section {
@@ -245,10 +353,24 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: #d81b60;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-avatar {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            animation: bounce 2s infinite;
         }
 
         #solo-options {
             margin-top: 20px;
+        }
+
+        .solo-avatar {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
         }
 
         .option {
@@ -300,28 +422,27 @@
             display: none;
         }
 
-        /* Feedback and Countdown Animations */
-        @keyframes popIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
+        .back-button, .home-button {
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 20px;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover, .home-button:hover {
+            background-color: #1976d2;
+            transform: scale(1.1);
         }
 
         /* Congrats Page Styles */
@@ -366,6 +487,7 @@
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 10px;
         }
 
         .next-quiz-button:hover {
@@ -407,6 +529,29 @@
             }
         }
 
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 600px) {
             .player-section {
@@ -418,12 +563,12 @@
                 width: 100%;
             }
 
-            .mode-buttons {
+            .mode-buttons, .avatar-options, .nav-buttons {
                 flex-direction: column;
                 gap: 10px;
             }
 
-            .cta-button, .intro-button, .mode-button, .next-quiz-button {
+            .cta-button, .intro-button, .mode-button, .avatar-option, .room-button, .next-quiz-button, .back-button, .home-button {
                 padding: 10px 20px;
             }
         }
@@ -435,7 +580,7 @@
         <div class="landing-container">
             <div class="landing-header">
                 <h1>Kuiz Seronok untuk Seorang atau Berdua!</h1>
-                <p>Main sendiri atau ajak kawan, ketawa dan belajar sama-sama! 😄</p>
+                <p>Pilih avatar, main sendiri atau bersama kawan di mana saja, ketawa dengan soalan lucu! 😄</p>
                 <button class="cta-button" onclick="showIntro()">Mulakan Kuiz Sekarang!</button>
             </div>
 
@@ -443,17 +588,17 @@
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/user.png" alt="Seorang">
                     <h3>Main Seorang</h3>
-                    <p>Jadi juara sendiri dengan soalan mudah dan seronok!</p>
+                    <p>Jadi juara dengan avatar pilihan kamu!</p>
                 </div>
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/two-hearts.png" alt="Berdua">
                     <h3>Main Berdua</h3>
-                    <p>Ajak kawan, jawab sekali, dan menang sebagai pasukan!</p>
+                    <p>Ajak kawan, main sama-sama di telefon berbeza!</p>
                 </div>
                 <div class="feature-box">
                     <img src="https://img.icons8.com/color/48/000000/smiling.png" alt="Senyum">
                     <h3>Ketawa Bersama</h3>
-                    <p>Soalan lucu buat kamu gembira, sama ada seorang atau berdua!</p>
+                    <p>Soalan dengan ikon lucu, bunyi seronok!</p>
                 </div>
             </div>
 
@@ -477,9 +622,29 @@
         <div class="mode-container">
             <h1 class="mode-title">Pilih Cara Main!</h1>
             <div class="mode-buttons">
-                <button class="mode-button" onclick="startQuiz(1, 'solo')">Main Seorang</button>
-                <button class="mode-button" onclick="startQuiz(1, 'multi')">Main Berdua</button>
+                <button class="mode-button" onclick="showAvatarSelection('solo')">Main Seorang</button>
+                <button class="mode-button" onclick="showAvatarSelection('multi')">Main Berdua</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Avatar Selection Page -->
+    <div id="avatar-page">
+        <div class="avatar-container">
+            <h1 class="avatar-title" id="avatar-title">Pilih Avatar Kamu!</h1>
+            <div class="avatar-options" id="avatar-options"></div>
+            <button class="cta-button" onclick="confirmAvatar()">Seterusnya</button>
+        </div>
+    </div>
+
+    <!-- Room Selection Page -->
+    <div id="room-page">
+        <div class="room-container">
+            <h1 class="room-title">Main Berdua Rentas Peranti</h1>
+            <p>Masukkan kod bilik untuk menyertai kawan, atau cipta bilik baru!</p>
+            <input type="text" id="room-code" class="room-input" placeholder="Masukkan Kod Bilik">
+            <button class="room-button" onclick="joinRoom()">Sertai Bilik</button>
+            <button class="room-button" onclick="createRoom()">Cipta Bilik Baru</button>
         </div>
     </div>
 
@@ -487,14 +652,15 @@
     <div id="quiz-page">
         <div class="quiz-container">
             <h1>Kuiz Seronok Kanak-Kanak!</h1>
+            <div id="solo-avatar" class="solo-avatar"></div>
             <div id="question"></div>
             <div class="player-section" id="player-section">
                 <div class="player-box" id="player1-box">
-                    <h3>Pemain 1 (Skor: <span id="player1-score">0</span>)</h3>
+                    <h3 id="player1-header">Pemain 1 (Skor: <span id="player1-score">0</span>)</h3>
                     <div id="player1-options"></div>
                 </div>
                 <div class="player-box" id="player2-box">
-                    <h3>Pemain 2 (Skor: <span id="player2-score">0</span>)</h3>
+                    <h3 id="player2-header">Pemain 2 (Skor: <span id="player2-score">0</span>)</h3>
                     <div id="player2-options"></div>
                 </div>
             </div>
@@ -502,6 +668,10 @@
             <div id="feedback"></div>
             <div id="countdown"></div>
             <div id="result"></div>
+            <div class="nav-buttons">
+                <button class="back-button" onclick="goBack()">Kembali</button>
+                <button class="home-button" onclick="goHome()">Menu Utama</button>
+            </div>
         </div>
     </div>
 
@@ -512,531 +682,153 @@
             <h1 class="congrats-title" id="congrats-title">Tahniah! 10/10!</h1>
             <p class="congrats-message" id="congrats-message">Kamu hebat! Semua soalan betul! 🎉 Nak main tahap seterusnya?</p>
             <button class="next-quiz-button" id="next-level-btn">Main Tahap Seterusnya!</button>
+            <button class="home-button" onclick="goHome()">Menu Utama</button>
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js"></script>
+
     <script>
-        // Quiz Data for All Levels
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Quiz Data with Icons
         const quizData = {
             1: [
-                {
-                    question: "Apa warna langit pada hari cerah?",
-                    options: ["Merah", "Biru", "Hijau", "Kuning"],
-                    answer: "Biru"
-                },
-                {
-                    question: "Berapa kaki seekor kucing?",
-                    options: ["Dua", "Tiga", "Empat", "Lima"],
-                    answer: "Empat"
-                },
-                {
-                    question: "Buah yang selalu jadi penutup?",
-                    options: ["Epal", "Pisang", "Tomato", "Anggur"],
-                    answer: "Tomato"
-                },
-                {
-                    question: "Haiwan yang paling genit?",
-                    options: ["Semute", "Semute gatal", "Semute api", "Semute manja"],
-                    answer: "Semute manja"
-                },
-                {
-                    question: "Apa nama planet tempat kita tinggal?",
-                    options: ["Marikh", "Bumi", "Musytari", "Zuhrah"],
-                    answer: "Bumi"
-                },
-                {
-                    question: "Bunga yang paling cantik?",
-                    options: ["Mawar", "Melati", "Orkid", "Matahari"],
-                    answer: "Mawar"
-                },
-                {
-                    question: "Berapa bilangan roda pada basikal?",
-                    options: ["Satu", "Dua", "Tiga", "Empat"],
-                    answer: "Dua"
-                },
-                {
-                    question: "Haiwan yang paling pendiam?",
-                    options: ["Gajah", "Semute", "Singa", "Burung"],
-                    answer: "Semute"
-                },
-                {
-                    question: "Apa yang selalu ada di hujung pelangi?",
-                    options: ["Emas", "Pelangi lain", "Awan", "Matahari"],
-                    answer: "Emas"
-                },
-                {
-                    question: "Alat untuk menulis di papan putih?",
-                    options: ["Pensel", "Pen", "Kapur", "Penanda"],
-                    answer: "Kapur"
-                }
+                { question: "Apa warna langit pada hari cerah?", options: ["Merah", "Biru", "Hijau", "Kuning"], answer: "Biru", icon: "☁️" },
+                { question: "Berapa kaki seekor kucing?", options: ["Dua", "Tiga", "Empat", "Lima"], answer: "Empat", icon: "🐱" },
+                { question: "Buah yang selalu jadi penutup?", options: ["Epal", "Pisang", "Tomato", "Anggur"], answer: "Tomato", icon: "🍅" },
+                { question: "Haiwan yang paling genit?", options: ["Semute", "Semute gatal", "Semute api", "Semute manja"], answer: "Semute manja", icon: "🐜" },
+                { question: "Apa nama planet tempat kita tinggal?", options: ["Marikh", "Bumi", "Musytari", "Zuhrah"], answer: "Bumi", icon: "🌍" },
+                { question: "Bunga yang paling cantik?", options: ["Mawar", "Melati", "Orkid", "Matahari"], answer: "Mawar", icon: "🌹" },
+                { question: "Berapa bilangan roda pada basikal?", options: ["Satu", "Dua", "Tiga", "Empat"], answer: "Dua", icon: "🚲" },
+                { question: "Haiwan yang paling pendiam?", options: ["Gajah", "Semute", "Singa", "Burung"], answer: "Semute", icon: "🐘" },
+                { question: "Apa yang selalu ada di hujung pelangi?", options: ["Emas", "Pelangi lain", "Awan", "Matahari"], answer: "Emas", icon: "🌈" },
+                { question: "Alat untuk menulis di papan putih?", options: ["Pensel", "Pen", "Kapur", "Penanda"], answer: "Kapur", icon: "✏️" }
             ],
             2: [
-                {
-                    question: "Haiwan yang paling besar di dunia?",
-                    options: ["Gajah", "Paus biru", "Badak", "Zirafah"],
-                    answer: "Paus biru"
-                },
-                {
-                    question: "Apa warna daun pada musim panas?",
-                    options: ["Merah", "Kuning", "Hijau", "Oren"],
-                    answer: "Hijau"
-                },
-                {
-                    question: "Berapa jari di satu tangan manusia?",
-                    options: ["Tiga", "Empat", "Lima", "Enam"],
-                    answer: "Lima"
-                },
-                {
-                    question: "Buah yang paling manis?",
-                    options: ["Lemon", "Mangga", "Cili", "Betik"],
-                    answer: "Mangga"
-                },
-                {
-                    question: "Apa yang terbang tanpa sayap?",
-                    options: ["Burung", "Masa", "Kapal terbang", "Helikopter"],
-                    answer: "Masa"
-                },
-                {
-                    question: "Haiwan yang paling pantas berlari?",
-                    options: ["Kucing", "Cita", "Anjing", "Kuda"],
-                    answer: "Cita"
-                },
-                {
-                    question: "Apa nama bulan pertama dalam setahun?",
-                    options: ["Mac", "Januari", "Julai", "Disember"],
-                    answer: "Januari"
-                },
-                {
-                    question: "Alat muzik yang dimainkan dengan tiup?",
-                    options: ["Gitar", "Piano", "Seruling", "Dram"],
-                    answer: "Seruling"
-                },
-                {
-                    question: "Apa yang selalu basah walaupun kering?",
-                    options: ["Baju", "Tuala", "Air", "Kertas"],
-                    answer: "Tuala"
-                },
-                {
-                    question: "Sayuran yang berwarna ungu?",
-                    options: ["Kobis ungu", "Bayam", "Kacang", "Timun"],
-                    answer: "Kobis ungu"
-                }
+                { question: "Haiwan yang paling besar di dunia?", options: ["Gajah", "Paus biru", "Badak", "Zirafah"], answer: "Paus biru", icon: "🐳" },
+                { question: "Apa warna daun pada musim panas?", options: ["Merah", "Kuning", "Hijau", "Oren"], answer: "Hijau", icon: "🍃" },
+                { question: "Berapa jari di satu tangan manusia?", options: ["Tiga", "Empat", "Lima", "Enam"], answer: "Lima", icon: "✋" },
+                { question: "Buah yang paling manis?", options: ["Lemon", "Mangga", "Cili", "Betik"], answer: "Mangga", icon: "🥭" },
+                { question: "Apa yang terbang tanpa sayap?", options: ["Burung", "Masa", "Kapal terbang", "Helikopter"], answer: "Masa", icon: "⏳" },
+                { question: "Haiwan yang paling pantas berlari?", options: ["Kucing", "Cita", "Anjing", "Kuda"], answer: "Cita", icon: "🐆" },
+                { question: "Apa nama bulan pertama dalam setahun?", options: ["Mac", "Januari", "Julai", "Disember"], answer: "Januari", icon: "📅" },
+                { question: "Alat muzik yang dimainkan dengan tiup?", options: ["Gitar", "Piano", "Seruling", "Dram"], answer: "Seruling", icon: "🎶" },
+                { question: "Apa yang selalu basah walaupun kering?", options: ["Baju", "Tuala", "Air", "Kertas"], answer: "Tuala", icon: "🧴" },
+                { question: "Sayuran yang berwarna ungu?", options: ["Kobis ungu", "Bayam", "Kacang", "Timun"], answer: "Kobis ungu", icon: "🥬" }
             ],
+            // Tahap lain serupa, ditambah ikon seperti: 🐼, 🍎, 🚗, dll.
             3: [
-                {
-                    question: "Apa nama bendera Malaysia?",
-                    options: ["Jalur Gemilang", "Bunga Raya", "Harimau Malaya", "Sang Saka"],
-                    answer: "Jalur Gemilang"
-                },
-                {
-                    question: "Berapa kaki seekor labah-labah?",
-                    options: ["Empat", "Lapan", "Enam", "Sepuluh"],
-                    answer: "Lapan"
-                },
-                {
-                    question: "Buah yang dikenali sebagai 'Raja Buah'?",
-                    options: ["Durian", "Rambutan", "Manggis", "Nanas"],
-                    answer: "Durian"
-                },
-                {
-                    question: "Haiwan yang suka makan buluh?",
-                    options: ["Panda", "Koala", "Beruang", "Harimau"],
-                    answer: "Panda"
-                },
-                {
-                    question: "Apa warna bunga kebangsaan Malaysia?",
-                    options: ["Kuning", "Merah", "Putih", "Ungu"],
-                    answer: "Merah"
-                },
-                {
-                    question: "Berapa hari dalam seminggu?",
-                    options: ["Lima", "Enam", "Tujuh", "Lapan"],
-                    answer: "Tujuh"
-                },
-                {
-                    question: "Alat untuk mengukur panjang?",
-                    options: ["Pembaris", "Termometer", "Jam", "Timbang"],
-                    answer: "Pembaris"
-                },
-                {
-                    question: "Haiwan yang paling tinggi?",
-                    options: ["Gajah", "Zirafah", "Kuda", "Unta"],
-                    answer: "Zirafah"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk melihat bintang di langit?",
-                    options: ["Mikroskop", "Teleskop", "Kamera", "Kaca mata"],
-                    answer: "Teleskop"
-                },
-                {
-                    question: "Sayuran yang digunakan dalam nasi goreng?",
-                    options: ["Kubis", "Brokoli", "Lobak merah", "Zukini"],
-                    answer: "Lobak merah"
-                }
+                { question: "Apa nama bendera Malaysia?", options: ["Jalur Gemilang", "Bunga Raya", "Harimau Malaya", "Sang Saka"], answer: "Jalur Gemilang", icon: "🇲🇾" },
+                { question: "Berapa kaki seekor labah-labah?", options: ["Empat", "Lapan", "Enam", "Sepuluh"], answer: "Lapan", icon: "🕷️" },
+                { question: "Buah yang dikenali sebagai 'Raja Buah'?", options: ["Durian", "Rambutan", "Manggis", "Nanas"], answer: "Durian", icon: "🍈" },
+                { question: "Haiwan yang suka makan buluh?", options: ["Panda", "Koala", "Beruang", "Harimau"], answer: "Panda", icon: "🐼" },
+                { question: "Apa warna bunga kebangsaan Malaysia?", options: ["Kuning", "Merah", "Putih", "Ungu"], answer: "Merah", icon: "🌺" },
+                { question: "Berapa hari dalam seminggu?", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: "Tujuh", icon: "📆" },
+                { question: "Alat untuk mengukur panjang?", options: ["Pembaris", "Termometer", "Jam", "Timbang"], answer: "Pembaris", icon: "📏" },
+                { question: "Haiwan yang paling tinggi?", options: ["Gajah", "Zirafah", "Kuda", "Unta"], answer: "Zirafah", icon: "🦒" },
+                { question: "Apa yang kita gunakan untuk melihat bintang di langit?", options: ["Mikroskop", "Teleskop", "Kamera", "Kaca mata"], answer: "Teleskop", icon: "🔭" },
+                { question: "Sayuran yang digunakan dalam nasi goreng?", options: ["Kubis", "Brokoli", "Lobak merah", "Zukini"], answer: "Lobak merah", icon: "🥕" }
             ],
+            // Sila tambah ikon untuk tahap 4-10 jika diperlukan
             4: [
-                {
-                    question: "Apa ibu kota Malaysia?",
-                    options: ["Kuala Lumpur", "Johor Bahru", "Penang", "Melaka"],
-                    answer: "Kuala Lumpur"
-                },
-                {
-                    question: "Berapa ekor kaki pada lebah?",
-                    options: ["Empat", "Lima", "Enam", "Tujuh"],
-                    answer: "Enam"
-                },
-                {
-                    question: "Buah yang berwarna kuning dan panjang?",
-                    options: ["Pisang", "Nanas", "Mangga", "Betik"],
-                    answer: "Pisang"
-                },
-                {
-                    question: "Haiwan yang tinggal di dalam air dan bernafas dengan insang?",
-                    options: ["Katak", "Ikan", "Buaya", "Penyu"],
-                    answer: "Ikan"
-                },
-                {
-                    question: "Apa warna awan pada hari hujan?",
-                    options: ["Putih", "Kelabu", "Biru", "Kuning"],
-                    answer: "Kelabu"
-                },
-                {
-                    question: "Berapa sisi pada segi tiga?",
-                    options: ["Dua", "Tiga", "Empat", "Lima"],
-                    answer: "Tiga"
-                },
-                {
-                    question: "Alat muzik yang mempunyai tali?",
-                    options: ["Gitar", "Dram", "Seruling", "Piano"],
-                    answer: "Gitar"
-                },
-                {
-                    question: "Haiwan yang terkenal dengan belangnya?",
-                    options: ["Harimau", "Zebra", "Singa", "Cita"],
-                    answer: "Zebra"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk melindungi kepala dari hujan?",
-                    options: ["Payung", "Topi", "Selendang", "Jaket"],
-                    answer: "Payung"
-                },
-                {
-                    question: "Sayuran yang sering dijadikan sup?",
-                    options: ["Bayam", "Kentang", "Kacang panjang", "Terung"],
-                    answer: "Kentang"
-                }
+                { question: "Apa ibu kota Malaysia?", options: ["Kuala Lumpur", "Johor Bahru", "Penang", "Melaka"], answer: "Kuala Lumpur", icon: "🏙️" },
+                { question: "Berapa ekor kaki pada lebah?", options: ["Empat", "Lima", "Enam", "Tujuh"], answer: "Enam", icon: "🐝" },
+                { question: "Buah yang berwarna kuning dan panjang?", options: ["Pisang", "Nanas", "Mangga", "Betik"], answer: "Pisang", icon: "🍌" },
+                { question: "Haiwan yang tinggal di dalam air dan bernafas dengan insang?", options: ["Katak", "Ikan", "Buaya", "Penyu"], answer: "Ikan", icon: "🐠" },
+                { question: "Apa warna awan pada hari hujan?", options: ["Putih", "Kelabu", "Biru", "Kuning"], answer: "Kelabu", icon: "☁️" },
+                { question: "Berapa sisi pada segi tiga?", options: ["Dua", "Tiga", "Empat", "Lima"], answer: "Tiga", icon: "🔺" },
+                { question: "Alat muzik yang mempunyai tali?", options: ["Gitar", "Dram", "Seruling", "Piano"], answer: "Gitar", icon: "🎸" },
+                { question: "Haiwan yang terkenal dengan belangnya?", options: ["Harimau", "Zebra", "Singa", "Cita"], answer: "Zebra", icon: "🦓" },
+                { question: "Apa yang kita gunakan untuk melindungi kepala dari hujan?", options: ["Payung", "Topi", "Selendang", "Jaket"], answer: "Payung", icon: "☂️" },
+                { question: "Sayuran yang sering dijadikan sup?", options: ["Bayam", "Kentang", "Kacang panjang", "Terung"], answer: "Kentang", icon: "🥔" }
             ],
             5: [
-                {
-                    question: "Apa nama gunung tertinggi di Malaysia?",
-                    options: ["Gunung Kinabalu", "Gunung Tahan", "Gunung Ledang", "Gunung Jerai"],
-                    answer: "Gunung Kinabalu"
-                },
-                {
-                    question: "Berapa kaki pada kumbang?",
-                    options: ["Empat", "Lima", "Enam", "Lapan"],
-                    answer: "Enam"
-                },
-                {
-                    question: "Buah yang dikenali sebagai 'ratu buah'?",
-                    options: ["Manggis", "Durian", "Rambutan", "Cempedak"],
-                    answer: "Manggis"
-                },
-                {
-                    question: "Haiwan yang boleh menukar warna kulit?",
-                    options: ["Katak", "Sotong", "Bunglon", "Ular"],
-                    answer: "Bunglon"
-                },
-                {
-                    question: "Apa warna bunga matahari?",
-                    options: ["Merah", "Kuning", "Biru", "Ungu"],
-                    answer: "Kuning"
-                },
-                {
-                    question: "Berapa sisi pada segi empat sama?",
-                    options: ["Tiga", "Empat", "Lima", "Enam"],
-                    answer: "Empat"
-                },
-                {
-                    question: "Alat untuk mengira masa?",
-                    options: ["Pembaris", "Jam", "Termometer", "Timbang"],
-                    answer: "Jam"
-                },
-                {
-                    question: "Haiwan yang terkenal kerana tidur lama?",
-                    options: ["Beruang", "Kucing", "Anjing", "Arnab"],
-                    answer: "Beruang"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk menyalakan lampu?",
-                    options: ["Suis", "Bateri", "Kabel", "Plag"],
-                    answer: "Suis"
-                },
-                {
-                    question: "Sayuran yang berbentuk seperti bunga?",
-                    options: ["Kubis", "Brokoli", "Sawi", "Kacang"],
-                    answer: "Brokoli"
-                }
+                { question: "Apa nama gunung tertinggi di Malaysia?", options: ["Gunung Kinabalu", "Gunung Tahan", "Gunung Ledang", "Gunung Jerai"], answer: "Gunung Kinabalu", icon: "⛰️" },
+                { question: "Berapa kaki pada kumbang?", options: ["Empat", "Lima", "Enam", "Lapan"], answer: "Enam", icon: "🐞" },
+                { question: "Buah yang dikenali sebagai 'ratu buah'?", options: ["Manggis", "Durian", "Rambutan", "Cempedak"], answer: "Manggis", icon: "🍇" },
+                { question: "Haiwan yang boleh menukar warna kulit?", options: ["Katak", "Sotong", "Bunglon", "Ular"], answer: "Bunglon", icon: "🦎" },
+                { question: "Apa warna bunga matahari?", options: ["Merah", "Kuning", "Biru", "Ungu"], answer: "Kuning", icon: "🌻" },
+                { question: "Berapa sisi pada segi empat sama?", options: ["Tiga", "Empat", "Lima", "Enam"], answer: "Empat", icon: "🔲" },
+                { question: "Alat untuk mengira masa?", options: ["Pembaris", "Jam", "Termometer", "Timbang"], answer: "Jam", icon: "⏰" },
+                { question: "Haiwan yang terkenal kerana tidur lama?", options: ["Beruang", "Kucing", "Anjing", "Arnab"], answer: "Beruang", icon: "🐻" },
+                { question: "Apa yang kita gunakan untuk menyalakan lampu?", options: ["Suis", "Bateri", "Kabel", "Plag"], answer: "Suis", icon: "💡" },
+                { question: "Sayuran yang berbentuk seperti bunga?", options: ["Kubis", "Brokoli", "Sawi", "Kacang"], answer: "Brokoli", icon: "🥦" }
             ],
             6: [
-                {
-                    question: "Apa nama pulau terbesar di Malaysia?",
-                    options: ["Pulau Pinang", "Pulau Langkawi", "Pulau Borneo", "Pulau Tioman"],
-                    answer: "Pulau Borneo"
-                },
-                {
-                    question: "Berapa sayap pada burung?",
-                    options: ["Satu", "Dua", "Tiga", "Empat"],
-                    answer: "Dua"
-                },
-                {
-                    question: "Buah yang selalu ada dalam kuih tradisional?",
-                    options: ["Kelapa", "Epal", "Oren", "Anggur"],
-                    answer: "Kelapa"
-                },
-                {
-                    question: "Haiwan yang suka melompat di pokok?",
-                    options: ["Monyet", "Harimau", "Gajah", "Badak"],
-                    answer: "Monyet"
-                },
-                {
-                    question: "Apa warna darah manusia?",
-                    options: ["Biru", "Merah", "Hijau", "Kuning"],
-                    answer: "Merah"
-                },
-                {
-                    question: "Berapa sisi pada bulatan?",
-                    options: ["Sifar", "Satu", "Dua", "Tiga"],
-                    answer: "Sifar"
-                },
-                {
-                    question: "Alat muzik yang dimainkan dengan pukul?",
-                    options: ["Seruling", "Dram", "Gitar", "Piano"],
-                    answer: "Dram"
-                },
-                {
-                    question: "Haiwan yang paling kuat di hutan?",
-                    options: ["Singa", "Gajah", "Badak", "Beruang"],
-                    answer: "Gajah"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk menjahit pakaian?",
-                    options: ["Jarum", "Gunting", "Pita", "Kertas"],
-                    answer: "Jarum"
-                },
-                {
-                    question: "Sayuran yang selalu ada dalam salad?",
-                    options: ["Timun", "Sawi", "Labu", "Peria"],
-                    answer: "Timun"
-                }
+                { question: "Apa nama pulau terbesar di Malaysia?", options: ["Pulau Pinang", "Pulau Langkawi", "Pulau Borneo", "Pulau Tioman"], answer: "Pulau Borneo", icon: "🏝️" },
+                { question: "Berapa sayap pada burung?", options: ["Satu", "Dua", "Tiga", "Empat"], answer: "Dua", icon: "🐦" },
+                { question: "Buah yang selalu ada dalam kuih tradisional?", options: ["Kelapa", "Epal", "Oren", "Anggur"], answer: "Kelapa", icon: "🥥" },
+                { question: "Haiwan yang suka melompat di pokok?", options: ["Monyet", "Harimau", "Gajah", "Badak"], answer: "Monyet", icon: "🐒" },
+                { question: "Apa warna darah manusia?", options: ["Biru", "Merah", "Hijau", "Kuning"], answer: "Merah", icon: "🩺" },
+                { question: "Berapa sisi pada bulatan?", options: ["Sifar", "Satu", "Dua", "Tiga"], answer: "Sifar", icon: "⚪" },
+                { question: "Alat muzik yang dimainkan dengan pukul?", options: ["Seruling", "Dram", "Gitar", "Piano"], answer: "Dram", icon: "🥁" },
+                { question: "Haiwan yang paling kuat di hutan?", options: ["Singa", "Gajah", "Badak", "Beruang"], answer: "Gajah", icon: "🐘" },
+                { question: "Apa yang kita gunakan untuk menjahit pakaian?", options: ["Jarum", "Gunting", "Pita", "Kertas"], answer: "Jarum", icon: "🪡" },
+                { question: "Sayuran yang selalu ada dalam salad?", options: ["Timun", "Sawi", "Labu", "Peria"], answer: "Timun", icon: "🥒" }
             ],
             7: [
-                {
-                    question: "Apa nama sungai terpanjang di Malaysia?",
-                    options: ["Sungai Rajang", "Sungai Kinabatangan", "Sungai Pahang", "Sungai Perak"],
-                    answer: "Sungai Rajang"
-                },
-                {
-                    question: "Berapa kaki pada lipas?",
-                    options: ["Empat", "Lima", "Enam", "Lapan"],
-                    answer: "Enam"
-                },
-                {
-                    question: "Buah yang selalu dimakan dengan kulitnya?",
-                    options: ["Anggur", "Nanas", "Betik", "Durian"],
-                    answer: "Anggur"
-                },
-                {
-                    question: "Haiwan yang terkenal kerana berenang perlahan?",
-                    options: ["Penyu", "Ikan lumba-lumba", "Jerung", "Paus"],
-                    answer: "Penyu"
-                },
-                {
-                    question: "Apa warna bulan pada waktu malam?",
-                    options: ["Kuning", "Merah", "Hijau", "Biru"],
-                    answer: "Kuning"
-                },
-                {
-                    question: "Berapa sisi pada segi lapan?",
-                    options: ["Lima", "Enam", "Tujuh", "Lapan"],
-                    answer: "Lapan"
-                },
-                {
-                    question: "Alat untuk menimbang berat?",
-                    options: ["Pembaris", "Termometer", "Timbang", "Jam"],
-                    answer: "Timbang"
-                },
-                {
-                    question: "Haiwan yang suka makan madu?",
-                    options: ["Beruang", "Semute", "Lebah", "Harimau"],
-                    answer: "Beruang"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk melindungi tangan semasa memasak?",
-                    options: ["Sarung tangan", "Apron", "Topi", "Kain"],
-                    answer: "Sarung tangan"
-                },
-                {
-                    question: "Sayuran yang selalu digunakan dalam sate?",
-                    options: ["Bawang", "Kubis", "Sawi", "Kacang"],
-                    answer: "Bawang"
-                }
+                { question: "Apa nama sungai terpanjang di Malaysia?", options: ["Sungai Rajang", "Sungai Kinabatangan", "Sungai Pahang", "Sungai Perak"], answer: "Sungai Rajang", icon: "🌊" },
+                { question: "Berapa kaki pada lipas?", options: ["Empat", "Lima", "Enam", "Lapan"], answer: "Enam", icon: "🪳" },
+                { question: "Buah yang selalu dimakan dengan kulitnya?", options: ["Anggur", "Nanas", "Betik", "Durian"], answer: "Anggur", icon: "🍇" },
+                { question: "Haiwan yang terkenal kerana berenang perlahan?", options: ["Penyu", "Ikan lumba-lumba", "Jerung", "Paus"], answer: "Penyu", icon: "🐢" },
+                { question: "Apa warna bulan pada waktu malam?", options: ["Kuning", "Merah", "Hijau", "Biru"], answer: "Kuning", icon: "🌙" },
+                { question: "Berapa sisi pada segi lapan?", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: "Lapan", icon: "🔶" },
+                { question: "Alat untuk menimbang berat?", options: ["Pembaris", "Termometer", "Timbang", "Jam"], answer: "Timbang", icon: "⚖️" },
+                { question: "Haiwan yang suka makan madu?", options: ["Beruang", "Semute", "Lebah", "Harimau"], answer: "Beruang", icon: "🍯" },
+                { question: "Apa yang kita gunakan untuk melindungi tangan semasa memasak?", options: ["Sarung tangan", "Apron", "Topi", "Kain"], answer: "Sarung tangan", icon: "🧤" },
+                { question: "Sayuran yang selalu digunakan dalam sate?", options: ["Bawang", "Kubis", "Sawi", "Kacang"], answer: "Bawang", icon: "🧅" }
             ],
             8: [
-                {
-                    question: "Apa nama tarian tradisional Malaysia?",
-                    options: ["Joget", "Bharatanatyam", "Lion Dance", "Kathak"],
-                    answer: "Joget"
-                },
-                {
-                    question: "Berapa sayap pada rama-rama?",
-                    options: ["Dua", "Empat", "Enam", "Lapan"],
-                    answer: "Empat"
-                },
-                {
-                    question: "Buah yang selalu ada dalam jam?",
-                    options: ["Epal", "Nanas", "Strawberi", "Betik"],
-                    answer: "Strawberi"
-                },
-                {
-                    question: "Haiwan yang terkenal kerana ekor panjangnya?",
-                    options: ["Monyet", "Kucing", "Tupai", "Burung"],
-                    answer: "Monyet"
-                },
-                {
-                    question: "Apa warna matahari pada waktu pagi?",
-                    options: ["Merah", "Kuning", "Biru", "Hijau"],
-                    answer: "Kuning"
-                },
-                {
-                    question: "Berapa sisi pada segi lima?",
-                    options: ["Tiga", "Empat", "Lima", "Enam"],
-                    answer: "Lima"
-                },
-                {
-                    question: "Alat muzik yang dimainkan dengan petik?",
-                    options: ["Piano", "Ukulele", "Dram", "Seruling"],
-                    answer: "Ukulele"
-                },
-                {
-                    question: "Haiwan yang suka tidur terbalik?",
-                    options: ["Kelawar", "Kucing", "Anjing", "Burung"],
-                    answer: "Kelawar"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk menyapu lantai?",
-                    options: ["Berus", "Penyapu", "Kain", "Span"],
-                    answer: "Penyapu"
-                },
-                {
-                    question: "Sayuran yang berwarna oren?",
-                    options: ["Lobak merah", "Bayam", "Kubis", "Sawi"],
-                    answer: "Lobak merah"
-                }
+                { question: "Apa nama tarian tradisional Malaysia?", options: ["Joget", "Bharatanatyam", "Lion Dance", "Kathak"], answer: "Joget", icon: "💃" },
+                { question: "Berapa sayap pada rama-rama?", options: ["Dua", "Empat", "Enam", "Lapan"], answer: "Empat", icon: "🦋" },
+                { question: "Buah yang selalu ada dalam jam?", options: ["Epal", "Nanas", "Strawberi", "Betik"], answer: "Strawberi", icon: "🍓" },
+                { question: "Haiwan yang terkenal kerana ekor panjangnya?", options: ["Monyet", "Kucing", "Tupai", "Burung"], answer: "Monyet", icon: "🐒" },
+                { question: "Apa warna matahari pada waktu pagi?", options: ["Merah", "Kuning", "Biru", "Hijau"], answer: "Kuning", icon: "☀️" },
+                { question: "Berapa sisi pada segi lima?", options: ["Tiga", "Empat", "Lima", "Enam"], answer: "Lima", icon: "🔶" },
+                { question: "Alat muzik yang dimainkan dengan petik?", options: ["Piano", "Ukulele", "Dram", "Seruling"], answer: "Ukulele", icon: "🎸" },
+                { question: "Haiwan yang suka tidur terbalik?", options: ["Kelawar", "Kucing", "Anjing", "Burung"], answer: "Kelawar", icon: "🦇" },
+                { question: "Apa yang kita gunakan untuk menyapu lantai?", options: ["Berus", "Penyapu", "Kain", "Span"], answer: "Penyapu", icon: "🧹" },
+                { question: "Sayuran yang berwarna oren?", options: ["Lobak merah", "Bayam", "Kubis", "Sawi"], answer: "Lobak merah", icon: "🥕" }
             ],
             9: [
-                {
-                    question: "Apa nama kuih tradisional Malaysia?",
-                    options: ["Kuih Lapis", "Pizza", "Donut", "Croissant"],
-                    answer: "Kuih Lapis"
-                },
-                {
-                    question: "Berapa kaki pada katak?",
-                    options: ["Dua", "Tiga", "Empat", "Lima"],
-                    answer: "Empat"
-                },
-                {
-                    question: "Buah yang selalu ada dalam air sirap?",
-                    options: ["Laici", "Durian", "Nanas", "Betik"],
-                    answer: "Laici"
-                },
-                {
-                    question: "Haiwan yang terkenal kerana paruhnya?",
-                    options: ["Burung", "Kucing", "Anjing", "Arnab"],
-                    answer: "Burung"
-                },
-                {
-                    question: "Apa warna bintang di langit malam?",
-                    options: ["Merah", "Kuning", "Hijau", "Biru"],
-                    answer: "Kuning"
-                },
-                {
-                    question: "Berapa sisi pada segi enam?",
-                    options: ["Empat", "Lima", "Enam", "Tujuh"],
-                    answer: "Enam"
-                },
-                {
-                    question: "Alat untuk memotong kertas?",
-                    options: ["Gunting", "Pembaris", "Pen", "Berus"],
-                    answer: "Gunting"
-                },
-                {
-                    question: "Haiwan yang paling genit di laut?",
-                    options: ["Ikan", "Sotong", "Ubur-ubur", "Penyu"],
-                    answer: "Ubur-ubur"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk melindungi badan dari hujan?",
-                    options: ["Jaket", "Payung", "Topi", "Baju hujan"],
-                    answer: "Baju hujan"
-                },
-                {
-                    question: "Sayuran yang selalu ada dalam tomyam?",
-                    options: ["Bawang", "Kubis", "Cendawan", "Sawi"],
-                    answer: "Cendawan"
-                }
+                { question: "Apa nama kuih tradisional Malaysia?", options: ["Kuih Lapis", "Pizza", "Donut", "Croissant"], answer: "Kuih Lapis", icon: "🍰" },
+                { question: "Berapa kaki pada katak?", options: ["Dua", "Tiga", "Empat", "Lima"], answer: "Empat", icon: "🐸" },
+                { question: "Buah yang selalu ada dalam air sirap?", options: ["Laici", "Durian", "Nanas", "Betik"], answer: "Laici", icon: "🍈" },
+                { question: "Haiwan yang terkenal kerana paruhnya?", options: ["Burung", "Kucing", "Anjing", "Arnab"], answer: "Burung", icon: "🐦" },
+                { question: "Apa warna bintang di langit malam?", options: ["Merah", "Kuning", "Hijau", "Biru"], answer: "Kuning", icon: "⭐" },
+                { question: "Berapa sisi pada segi enam?", options: ["Empat", "Lima", "Enam", "Tujuh"], answer: "Enam", icon: "🔷" },
+                { question: "Alat untuk memotong kertas?", options: ["Gunting", "Pembaris", "Pen", "Berus"], answer: "Gunting", icon: "✂️" },
+                { question: "Haiwan yang paling genit di laut?", options: ["Ikan", "Sotong", "Ubur-ubur", "Penyu"], answer: "Ubur-ubur", icon: "🪼" },
+                { question: "Apa yang kita gunakan untuk melindungi badan dari hujan?", options: ["Jaket", "Payung", "Topi", "Baju hujan"], answer: "Baju hujan", icon: "🧥" },
+                { question: "Sayuran yang selalu ada dalam tomyam?", options: ["Bawang", "Kubis", "Cendawan", "Sawi"], answer: "Cendawan", icon: "🍄" }
             ],
             10: [
-                {
-                    question: "Apa nama haiwan kebangsaan Malaysia?",
-                    options: ["Harimau", "Gajah", "Badak", "Orang Utan"],
-                    answer: "Harimau"
-                },
-                {
-                    question: "Berapa sayap pada lebah?",
-                    options: ["Dua", "Empat", "Enam", "Lapan"],
-                    answer: "Empat"
-                },
-                {
-                    question: "Buah yang terkenal di Terengganu?",
-                    options: ["Nanas", "Rambutan", "Cempedak", "Durian"],
-                    answer: "Rambutan"
-                },
-                {
-                    question: "Haiwan yang terkenal kerana tanduknya?",
-                    options: ["Badak", "Kambing", "Rusa", "Kerbau"],
-                    answer: "Badak"
-                },
-                {
-                    question: "Apa warna laut pada hari cerah?",
-                    options: ["Merah", "Kuning", "Biru", "Hijau"],
-                    answer: "Biru"
-                },
-                {
-                    question: "Berapa sisi pada segi tujuh?",
-                    options: ["Lima", "Enam", "Tujuh", "Lapan"],
-                    answer: "Tujuh"
-                },
-                {
-                    question: "Alat muzik yang dimainkan dengan tekan?",
-                    options: ["Piano", "Gitar", "Dram", "Seruling"],
-                    answer: "Piano"
-                },
-                {
-                    question: "Haiwan yang suka makan rumput?",
-                    options: ["Kambing", "Harimau", "Singa", "Ular"],
-                    answer: "Kambing"
-                },
-                {
-                    question: "Apa yang kita gunakan untuk menutup tingkap?",
-                    options: ["Langsir", "Kain", "Kertas", "Papan"],
-                    answer: "Langsir"
-                },
-                {
-                    question: "Sayuran yang selalu dimakan mentah?",
-                    options: ["Kubis", "Kentang", "Brokoli", "Labu"],
-                    answer: "Kubis"
-                }
+                { question: "Apa nama haiwan kebangsaan Malaysia?", options: ["Harimau", "Gajah", "Badak", "Orang Utan"], answer: "Harimau", icon: "🐅" },
+                { question: "Berapa sayap pada lebah?", options: ["Dua", "Empat", "Enam", "Lapan"], answer: "Empat", icon: "🐝" },
+                { question: "Buah yang terkenal di Terengganu?", options: ["Nanas", "Rambutan", "Cempedak", "Durian"], answer: "Rambutan", icon: "🍑" },
+                { question: "Haiwan yang terkenal kerana tanduknya?", options: ["Badak", "Kambing", "Rusa", "Kerbau"], answer: "Badak", icon: "🦏" },
+                { question: "Apa warna laut pada hari cerah?", options: ["Merah", "Kuning", "Biru", "Hijau"], answer: "Biru", icon: "🌊" },
+                { question: "Berapa sisi pada segi tujuh?", options: ["Lima", "Enam", "Tujuh", "Lapan"], answer: "Tujuh", icon: "🔶" },
+                { question: "Alat muzik yang dimainkan dengan tekan?", options: ["Piano", "Gitar", "Dram", "Seruling"], answer: "Piano", icon: "🎹" },
+                { question: "Haiwan yang suka makan rumput?", options: ["Kambing", "Harimau", "Singa", "Ular"], answer: "Kambing", icon: "🐐" },
+                { question: "Apa yang kita gunakan untuk menutup tingkap?", options: ["Langsir", "Kain", "Kertas", "Papan"], answer: "Langsir", icon: "🪟" },
+                { question: "Sayuran yang selalu dimakan mentah?", options: ["Kubis", "Kentang", "Brokoli", "Labu"], answer: "Kubis", icon: "🥬" }
             ]
         };
 
@@ -1047,13 +839,25 @@
         let player2Score = 0;
         let player1Answer = null;
         let player2Answer = null;
-        let gameMode = 'solo'; // 'solo' atau 'multi'
+        let gameMode = 'solo';
+        let player1Avatar = '';
+        let player2Avatar = '';
+        let currentPlayer = 1;
+        let roomId = null;
+        let isOnlineMulti = false;
+
+        // Audio Files (Ganti dengan URL sebenar atau hoskan fail)
+        const correctSound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3');
+        const wrongSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+        const cheerSound = new Audio('https://www.soundjay.com/human/sounds/applause-01.mp3');
 
         // Navigation Functions
         function showIntro() {
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('intro-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('intro-page').style.display = 'none';
             document.getElementById('mode-page').style.display = 'none';
+            document.getElementById('avatar-page').style.display = 'none';
+            document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
         }
@@ -1062,8 +866,135 @@
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'none';
             document.getElementById('mode-page').style.display = 'flex';
+            document.getElementById('avatar-page').style.display = 'none';
+            document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'none';
+        }
+
+        function showAvatarSelection(mode) {
+            gameMode = mode;
+            currentPlayer = 1;
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('mode-page').style.display = 'none';
+            document.getElementById('avatar-page').style.display = 'flex';
+            document.getElementById('room-page').style.display = 'none';
+            document.getElementById('quiz-page').style.display = 'none';
+            document.getElementById('congrats-page').style.display = 'none';
+
+            const avatarTitle = document.getElementById('avatar-title');
+            avatarTitle.innerText = mode === 'solo' ? 'Pilih Avatar Kamu!' : `Pilih Avatar Pemain ${currentPlayer}!`;
+
+            const avatarOptions = document.getElementById('avatar-options');
+            avatarOptions.innerHTML = '';
+            const avatars = ['🐶', '🐱', '🐻', '🐰', '🦁', '🐸'];
+            avatars.forEach(avatar => {
+                const div = document.createElement('div');
+                div.className = 'avatar-option';
+                div.innerText = avatar;
+                div.onclick = () => selectAvatar(avatar);
+                avatarOptions.appendChild(div);
+            });
+        }
+
+        function selectAvatar(avatar) {
+            const options = document.querySelectorAll('.avatar-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            event.target.classList.add('selected');
+            if (gameMode === 'solo') {
+                player1Avatar = avatar;
+            } else {
+                if (currentPlayer === 1) {
+                    player1Avatar = avatar;
+                } else {
+                    player2Avatar = avatar;
+                }
+            }
+        }
+
+        function confirmAvatar() {
+            if (gameMode === 'solo') {
+                startQuiz(1, 'solo');
+            } else {
+                if (currentPlayer === 1) {
+                    currentPlayer = 2;
+                    document.getElementById('avatar-title').innerText = 'Pilih Avatar Pemain 2!';
+                    document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
+                } else {
+                    showRoomSelection();
+                }
+            }
+        }
+
+        function showRoomSelection() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('intro-page').style.display = 'none';
+            document.getElementById('mode-page').style.display = 'none';
+            document.getElementById('avatar-page').style.display = 'none';
+            document.getElementById('room-page').style.display = 'flex';
+            document.getElementById('quiz-page').style.display = 'none';
+            document.getElementById('congrats-page').style.display = 'none';
+        }
+
+        function createRoom() {
+            roomId = Math.random().toString(36).substr(2, 6);
+            database.ref('rooms/' + roomId).set({
+                players: {
+                    player1: { avatar: player1Avatar, score: 0, answer: null },
+                    player2: null
+                },
+                questionIndex: 0,
+                quizLevel: 1
+            });
+            isOnlineMulti = true;
+            alert('Kod bilik anda: ' + roomId);
+            listenForOpponent(roomId, 'player1');
+            startQuiz(1, 'multi');
+        }
+
+        function joinRoom() {
+            roomId = document.getElementById('room-code').value.trim();
+            if (!roomId) {
+                alert('Sila masukkan kod bilik!');
+                return;
+            }
+            database.ref('rooms/' + roomId).once('value').then(snapshot => {
+                if (snapshot.exists()) {
+                    database.ref('rooms/' + roomId + '/players/player2').set({
+                        avatar: player2Avatar,
+                        score: 0,
+                        answer: null
+                    });
+                    isOnlineMulti = true;
+                    listenForOpponent(roomId, 'player2');
+                    startQuiz(1, 'multi');
+                } else {
+                    alert('Bilik tidak wujud!');
+                }
+            });
+        }
+
+        function listenForOpponent(room, player) {
+            database.ref('rooms/' + room).on('value', snapshot => {
+                const data = snapshot.val();
+                if (!data) return;
+                if (data.players.player1 && data.players.player2) {
+                    player1Avatar = data.players.player1.avatar;
+                    player2Avatar = data.players.player2.avatar;
+                    player1Score = data.players.player1.score;
+                    player2Score = data.players.player2.score;
+                    player1Answer = data.players.player1.answer;
+                    player2Answer = data.players.player2.answer;
+                    currentQuestion = data.questionIndex;
+                    currentQuiz = data.quizLevel;
+                    currentQuestions = quizData[currentQuiz];
+                    if (player1Answer && player2Answer) {
+                        checkMultiAnswers();
+                    }
+                    loadQuestion();
+                }
+            });
         }
 
         function startQuiz(quizNumber, mode) {
@@ -1080,6 +1011,8 @@
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'none';
             document.getElementById('mode-page').style.display = 'none';
+            document.getElementById('avatar-page').style.display = 'none';
+            document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'block';
             document.getElementById('congrats-page').style.display = 'none';
             loadQuestion();
@@ -1088,7 +1021,7 @@
         // Quiz Logic
         function loadQuestion() {
             const q = currentQuestions[currentQuestion];
-            document.getElementById('question').innerText = q.question;
+            document.getElementById('question').innerHTML = `<span class="question-icon">${q.icon}</span> ${q.question}`;
             const player1Options = document.getElementById('player1-options');
             const player2Options = document.getElementById('player2-options');
             const soloOptions = document.getElementById('solo-options');
@@ -1099,9 +1032,13 @@
             player1Answer = null;
             player2Answer = null;
 
+            document.getElementById('player1-header').innerHTML = `Pemain 1 <span class="player-avatar">${player1Avatar}</span> (Skor: <span id="player1-score">${player1Score}</span>)`;
+            document.getElementById('player2-header').innerHTML = `Pemain 2 <span class="player-avatar">${player2Avatar}</span> (Skor: <span id="player2-score">${player2Score}</span>)`;
+
             if (gameMode === 'solo') {
                 playerSection.style.display = 'none';
                 soloOptions.style.display = 'block';
+                document.getElementById('solo-avatar').innerText = player1Avatar;
                 q.options.forEach(option => {
                     const button = document.createElement('button');
                     button.className = 'option';
@@ -1112,6 +1049,7 @@
             } else {
                 playerSection.style.display = 'flex';
                 soloOptions.style.display = 'none';
+                document.getElementById('solo-avatar').innerText = '';
                 q.options.forEach(option => {
                     const button1 = document.createElement('button');
                     button1.className = 'option';
@@ -1127,7 +1065,7 @@
                 });
             }
 
-            document.getElementById('question').style.display = 'block';
+            document.getElementById('question').style.display = 'flex';
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('countdown').style.display = 'none';
             document.getElementById('result').style.display = 'none';
@@ -1145,16 +1083,17 @@
                 feedback.style.backgroundColor = '#e8f5e9';
                 feedback.style.color = '#4caf50';
                 player1Score++;
+                correctSound.play();
             } else {
                 feedback.innerText = `Alamak! Salah. Jawapan betul ialah "${q.answer}".`;
                 feedback.style.backgroundColor = '#fce4ec';
                 feedback.style.color = '#d81b60';
+                wrongSound.play();
             }
 
             const buttons = document.querySelectorAll('#solo-options .option');
             buttons.forEach(button => button.disabled = true);
 
-            // Mulakan countdown 5 saat
             let timeLeft = 5;
             countdown.innerText = timeLeft;
             const countdownInterval = setInterval(() => {
@@ -1173,28 +1112,32 @@
         }
 
         function selectAnswer(player, selected) {
-            if (player === 1) {
-                player1Answer = selected;
-                const buttons1 = document.querySelectorAll('#player1-options .option');
-                buttons1.forEach(button => {
-                    button.disabled = true;
-                    if (button.innerText === selected) {
-                        button.style.backgroundColor = '#4caf50';
-                    }
-                });
+            if (isOnlineMulti) {
+                database.ref(`rooms/${roomId}/players/player${player}/answer`).set(selected);
+                database.ref(`rooms/${roomId}/players/player${player}/score`).set(player === 1 ? player1Score : player2Score);
             } else {
-                player2Answer = selected;
-                const buttons2 = document.querySelectorAll('#player2-options .option');
-                buttons2.forEach(button => {
-                    button.disabled = true;
-                    if (button.innerText === selected) {
-                        button.style.backgroundColor = '#4caf50';
-                    }
-                });
-            }
-
-            if (player1Answer && player2Answer) {
-                checkMultiAnswers();
+                if (player === 1) {
+                    player1Answer = selected;
+                    const buttons1 = document.querySelectorAll('#player1-options .option');
+                    buttons1.forEach(button => {
+                        button.disabled = true;
+                        if (button.innerText === selected) {
+                            button.style.backgroundColor = '#4caf50';
+                        }
+                    });
+                } else {
+                    player2Answer = selected;
+                    const buttons2 = document.querySelectorAll('#player2-options .option');
+                    buttons2.forEach(button => {
+                        button.disabled = true;
+                        if (button.innerText === selected) {
+                            button.style.backgroundColor = '#4caf50';
+                        }
+                    });
+                }
+                if (player1Answer && player2Answer) {
+                    checkMultiAnswers();
+                }
             }
         }
 
@@ -1206,33 +1149,46 @@
             countdown.style.display = 'block';
 
             let feedbackText = '';
+            let scored = false;
             if (player1Answer === q.answer && player2Answer === q.answer) {
                 feedbackText = "Yay! Kedua-dua betul! 🎉";
                 feedback.style.backgroundColor = '#e8f5e9';
                 feedback.style.color = '#4caf50';
                 player1Score++;
                 player2Score++;
+                scored = true;
+                correctSound.play();
             } else if (player1Answer === q.answer) {
                 feedbackText = `Pemain 1 betul, Pemain 2 salah. Jawapan betul: "${q.answer}".`;
                 feedback.style.backgroundColor = '#fffde7';
                 feedback.style.color = '#d81b60';
                 player1Score++;
+                scored = true;
+                wrongSound.play();
             } else if (player2Answer === q.answer) {
                 feedbackText = `Pemain 2 betul, Pemain 1 salah. Jawapan betul: "${q.answer}".`;
                 feedback.style.backgroundColor = '#fffde7';
                 feedback.style.color = '#d81b60';
                 player2Score++;
+                scored = true;
+                wrongSound.play();
             } else {
                 feedbackText = `Alamak! Kedua-dua salah. Jawapan betul: "${q.answer}".`;
                 feedback.style.backgroundColor = '#fce4ec';
                 feedback.style.color = '#d81b60';
+                wrongSound.play();
             }
 
             feedback.innerText = feedbackText;
             document.getElementById('player1-score').innerText = player1Score;
             document.getElementById('player2-score').innerText = player2Score;
 
-            // Mulakan countdown 5 saat
+            if (isOnlineMulti && scored) {
+                database.ref(`rooms/${roomId}/players/player1/score`).set(player1Score);
+                database.ref(`rooms/${roomId}/players/player2/score`).set(player2Score);
+                database.ref(`rooms/${roomId}/questionIndex`).set(currentQuestion + 1);
+            }
+
             let timeLeft = 5;
             countdown.innerText = timeLeft;
             const countdownInterval = setInterval(() => {
@@ -1240,6 +1196,12 @@
                 countdown.innerText = timeLeft;
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
+                    player1Answer = null;
+                    player2Answer = null;
+                    if (isOnlineMulti) {
+                        database.ref(`rooms/${roomId}/players/player1/answer`).set(null);
+                        database.ref(`rooms/${roomId}/players/player2/answer`).set(null);
+                    }
                     currentQuestion++;
                     if (currentQuestion < currentQuestions.length) {
                         loadQuestion();
@@ -1254,6 +1216,7 @@
             document.getElementById('question').style.display = 'none';
             document.getElementById('player-section').style.display = 'none';
             document.getElementById('solo-options').style.display = 'none';
+            document.getElementById('solo-avatar').style.display = 'none';
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('countdown').style.display = 'none';
 
@@ -1275,11 +1238,12 @@
             }
         }
 
-        // Congrats Logic
         function showCongrats() {
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('intro-page').style.display = 'none';
             document.getElementById('mode-page').style.display = 'none';
+            document.getElementById('avatar-page').style.display = 'none';
+            document.getElementById('room-page').style.display = 'none';
             document.getElementById('quiz-page').style.display = 'none';
             document.getElementById('congrats-page').style.display = 'flex';
             const congratsTitle = document.getElementById('congrats-title');
@@ -1296,12 +1260,43 @@
 
             if (currentQuiz < 10) {
                 nextLevelBtn.innerText = `Main Tahap ${currentQuiz + 1}!`;
-                nextLevelBtn.onclick = () => startQuiz(currentQuiz + 1, gameMode);
+                nextLevelBtn.onclick = () => {
+                    if (isOnlineMulti) {
+                        database.ref(`rooms/${roomId}/quizLevel`).set(currentQuiz + 1);
+                        database.ref(`rooms/${roomId}/questionIndex`).set(0);
+                        database.ref(`rooms/${roomId}/players/player1/score`).set(0);
+                        database.ref(`rooms/${roomId}/players/player2/score`).set(0);
+                    }
+                    startQuiz(currentQuiz + 1, gameMode);
+                };
             } else {
                 nextLevelBtn.innerText = "Tahniah! Semua Tahap Selesai!";
                 nextLevelBtn.onclick = () => showIntro();
             }
+            cheerSound.play();
             startConfetti();
+        }
+
+        function goBack() {
+            if (isOnlineMulti) {
+                database.ref('rooms/' + roomId).remove();
+                isOnlineMulti = false;
+                roomId = null;
+            }
+            if (gameMode === 'solo') {
+                showModeSelection();
+            } else {
+                showAvatarSelection('multi');
+            }
+        }
+
+        function goHome() {
+            if (isOnlineMulti) {
+                database.ref('rooms/' + roomId).remove();
+                isOnlineMulti = false;
+                roomId = null;
+            }
+            showIntro();
         }
 
         // Confetti Animation
