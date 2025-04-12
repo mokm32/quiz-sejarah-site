@@ -204,7 +204,15 @@
             animation: popIn 0.5s ease-in-out;
         }
 
-        /* Feedback Animation */
+        #countdown {
+            font-size: 2.5rem;
+            color: #d81b60;
+            margin: 20px 0;
+            display: none;
+            animation: pulse 1s infinite;
+        }
+
+        /* Feedback and Countdown Animations */
         @keyframes popIn {
             0% {
                 transform: scale(0.5);
@@ -213,6 +221,18 @@
             100% {
                 transform: scale(1);
                 opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
             }
         }
 
@@ -282,7 +302,7 @@
             pointer-events: none;
         }
 
-        /* Animations */
+        /* General Animations */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -347,6 +367,10 @@
             #feedback {
                 font-size: 1.2rem;
             }
+
+            #countdown {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -400,6 +424,7 @@
             <div id="question"></div>
             <div id="options"></div>
             <div id="feedback"></div>
+            <div id="countdown"></div>
             <div id="result"></div>
         </div>
     </div>
@@ -565,13 +590,16 @@
             document.getElementById('question').style.display = 'block';
             document.getElementById('options').style.display = 'block';
             document.getElementById('feedback').style.display = 'none';
+            document.getElementById('countdown').style.display = 'none';
             document.getElementById('result').style.display = 'none';
         }
 
         function checkAnswer(selected) {
             const q = currentQuestions[currentQuestion];
             const feedback = document.getElementById('feedback');
+            const countdown = document.getElementById('countdown');
             feedback.style.display = 'block';
+            countdown.style.display = 'block';
 
             if (selected === q.answer) {
                 feedback.innerText = "Yeay! Betul sekali! 🎉";
@@ -587,21 +615,29 @@
             const buttons = document.querySelectorAll('.option');
             buttons.forEach(button => button.disabled = true);
 
-            // Automatik ke soalan seterusnya selepas 5 saat
-            setTimeout(() => {
-                currentQuestion++;
-                if (currentQuestion < currentQuestions.length) {
-                    loadQuestion();
-                } else {
-                    showResult();
+            // Mulakan countdown 5 saat
+            let timeLeft = 5;
+            countdown.innerText = timeLeft;
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                countdown.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    currentQuestion++;
+                    if (currentQuestion < currentQuestions.length) {
+                        loadQuestion();
+                    } else {
+                        showResult();
+                    }
                 }
-            }, 5000);
+            }, 1000);
         }
 
         function showResult() {
             document.getElementById('question').style.display = 'none';
             document.getElementById('options').style.display = 'none';
             document.getElementById('feedback').style.display = 'none';
+            document.getElementById('countdown').style.display = 'none';
 
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
