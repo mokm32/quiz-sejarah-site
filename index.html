@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Sejarah - Uji Pengetahuanmu!</title>
+    <title>Quiz Sejarah SPM - Latihan Modul Berfokus</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #f4f4f9;
+            background-color: #f0f2f5;
             color: #333;
         }
 
@@ -25,20 +25,20 @@
 
         header {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #004aad, #007bff);
             color: white;
             border-radius: 10px;
             margin-bottom: 30px;
         }
 
         header h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
         }
 
         header p {
-            font-size: 1.2em;
+            font-size: 1.3em;
             opacity: 0.9;
         }
 
@@ -59,7 +59,7 @@
         .hero-text h2 {
             font-size: 2em;
             margin-bottom: 15px;
-            color: #2a5298;
+            color: #004aad;
         }
 
         .hero-text p {
@@ -71,7 +71,7 @@
         .cta-button {
             display: inline-block;
             padding: 15px 30px;
-            background-color: #e67e22;
+            background-color: #28a745;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -80,7 +80,7 @@
         }
 
         .cta-button:hover {
-            background-color: #d35400;
+            background-color: #218838;
         }
 
         .hero-image img {
@@ -90,36 +90,66 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .quiz-list {
             margin-bottom: 50px;
         }
 
-        .feature-card {
+        .quiz-list h2 {
+            font-size: 2em;
+            color: #004aad;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .quiz-card {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
         }
 
-        .feature-card h3 {
-            font-size: 1.4em;
+        .quiz-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quiz-card h3 {
+            font-size: 1.5em;
+            color: #004aad;
             margin-bottom: 10px;
-            color: #2a5298;
         }
 
-        .feature-card p {
+        .quiz-card p {
             font-size: 1em;
             color: #666;
+            margin-bottom: 15px;
+        }
+
+        .quiz-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .quiz-card a:hover {
+            background-color: #0056b3;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #1e3c72;
+            background-color: #004aad;
             color: white;
             border-radius: 10px;
         }
@@ -143,41 +173,56 @@
 <body>
     <div class="container">
         <header>
-            <h1>Uji Pengetahuanmu dengan Quiz Sejarah!</h1>
-            <p>Asah pemahamanmu tentang peristiwa bersejarah dunia dan Indonesia melalui quiz interaktif kami.</p>
+            <h1>Quiz Sejarah SPM - Latihan Terbaik untuk Kejayaan!</h1>
+            <p>Sedia untuk skor A+ dalam Sejarah SPM? Latih kemahiran anda dengan modul soalan berfokus kami!</p>
         </header>
 
         <section class="hero">
             <div class="hero-text">
-                <h2>Siap Menjelajahi Sejarah?</h2>
+                <h2>Tingkatkan Persediaan SPM Anda</h2>
                 <p>
-                    Ikuti quiz sejarah kami untuk menguji pengetahuanmu tentang peradaban kuno, kemerdekaan Indonesia, hingga peristiwa dunia modern. 
-                    Dapatkan skor dan pelajari fakta menarik di setiap langkahnya!
+                    Quiz Sejarah SPM kami direka khusus mengikut format dan silabus terkini SPM. Setiap modul merangkumi topik penting seperti Sejarah Malaysia, Sejarah Dunia, dan tema-tema utama lain untuk memastikan anda bersedia sepenuhnya.
                 </p>
-                <a href="#start-quiz" class="cta-button">Mulai Quiz Sekarang</a>
+                <a href="#quiz-list" class="cta-button">Lihat Senarai Quiz</a>
             </div>
             <div class="hero-image">
-                <img src="https://via.placeholder.com/500x300?text=Sejarah" alt="Ilustrasi Sejarah">
+                <img src="https://via.placeholder.com/500x300?text=Sejarah+SPM" alt="Ilustrasi Sejarah SPM">
             </div>
         </section>
 
-        <section class="features">
-            <div class="feature-card">
-                <h3>Beragam Topik</h3>
-                <p>Pilih dari berbagai topik seperti sejarah Indonesia, dunia, atau peradaban kuno.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Interaktif & Menyenangkan</h3>
-                <p>Soal-soal dirancang untuk membuat belajar sejarah jadi lebih seru.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Skor & Peringkat</h3>
-                <p>Lihat skor dan bandingkan dengan teman-temanmu!</p>
+        <section class="quiz-list" id="quiz-list">
+            <h2>Modul Quiz Sejarah SPM</h2>
+            <div class="quiz-grid">
+                <div class="quiz-card">
+                    <h3>Modul 1: Sejarah Awal Malaysia</h3>
+                    <p>Uji pengetahuan anda tentang kerajaan awal seperti Melaka, Srivijaya, dan pengaruh luar.</p>
+                    <a href="#quiz1">Mulai Quiz</a>
+                </div>
+                <div class="quiz-card">
+                    <h3>Modul 2: Penjajahan dan Kemerdekaan</h3>
+                    <p>Fokus pada era penjajahan British, Jepun, dan perjuangan kemerdekaan Malaysia.</p>
+                    <a href="#quiz2">Mulai Quiz</a>
+                </div>
+                <div class="quiz-card">
+                    <h3>Modul 3: Pembentukan Malaysia</h3>
+                    <p>Terokai pembentukan Malaysia, Konfrontasi, dan perkembangan awal negara.</p>
+                    <a href="#quiz3">Mulai Quiz</a>
+                </div>
+                <div class="quiz-card">
+                    <h3>Modul 4: Sejarah Dunia Moden</h3>
+                    <p>Soalan berkaitan Perang Dunia, Perang Dingin, dan isu global lain dalam silabus SPM.</p>
+                    <a href="#quiz4">Mulai Quiz</a>
+                </div>
+                <div class="quiz-card">
+                    <h3>Modul 5: Latihan Campuran</h3>
+                    <p>Kombinasi soalan daripada semua topik untuk ujian menyeluruh sebelum SPM.</p>
+                    <a href="#quiz5">Mulai Quiz</a>
+                </div>
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2025 Quiz Sejarah. All rights reserved.</p>
+            <p>© 2025 Quiz Sejarah SPM. Dibangunkan untuk pelajar cemerlang.</p>
         </footer>
     </div>
 </body>
