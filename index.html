@@ -199,22 +199,21 @@
             font-size: 1.5rem;
             margin: 20px 0;
             display: none;
-        }
-
-        #next-btn {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            border: none;
+            padding: 20px;
             border-radius: 15px;
-            cursor: pointer;
-            display: none;
-            margin: 20px auto;
+            animation: popIn 0.5s ease-in-out;
         }
 
-        #next-btn:hover {
-            background-color: #388e3c;
+        /* Feedback Animation */
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         #result {
@@ -224,7 +223,7 @@
             display: none;
         }
 
-        /* Congrats Animation */
+        /* Congrats Page Styles */
         #congrats-page {
             display: none;
             background: linear-gradient(135deg, #ffeb3b, #4caf50);
@@ -344,6 +343,10 @@
                 font-size: 1rem;
                 padding: 10px;
             }
+
+            #feedback {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -397,7 +400,6 @@
             <div id="question"></div>
             <div id="options"></div>
             <div id="feedback"></div>
-            <button id="next-btn" onclick="nextQuestion()">Soalan Seterusnya</button>
             <div id="result"></div>
         </div>
     </div>
@@ -563,7 +565,6 @@
             document.getElementById('question').style.display = 'block';
             document.getElementById('options').style.display = 'block';
             document.getElementById('feedback').style.display = 'none';
-            document.getElementById('next-btn').style.display = 'none';
             document.getElementById('result').style.display = 'none';
         }
 
@@ -574,32 +575,33 @@
 
             if (selected === q.answer) {
                 feedback.innerText = "Yeay! Betul sekali! 🎉";
+                feedback.style.backgroundColor = '#e8f5e9';
                 feedback.style.color = '#4caf50';
                 score++;
             } else {
                 feedback.innerText = `Oops! Salah. Jawapan betul ialah "${q.answer}".`;
+                feedback.style.backgroundColor = '#fce4ec';
                 feedback.style.color = '#d81b60';
             }
 
-            document.getElementById('next-btn').style.display = 'block';
             const buttons = document.querySelectorAll('.option');
             buttons.forEach(button => button.disabled = true);
-        }
 
-        function nextQuestion() {
-            currentQuestion++;
-            if (currentQuestion < currentQuestions.length) {
-                loadQuestion();
-            } else {
-                showResult();
-            }
+            // Automatik ke soalan seterusnya selepas 5 saat
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < currentQuestions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 5000);
         }
 
         function showResult() {
             document.getElementById('question').style.display = 'none';
             document.getElementById('options').style.display = 'none';
             document.getElementById('feedback').style.display = 'none';
-            document.getElementById('next-btn').style.display = 'none';
 
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
