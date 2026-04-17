@@ -182,19 +182,19 @@ footer{text-align:center;padding:20px;background:#020617;border-top:1px solid #1
     <div class="card">
       <h3>Lifetime</h3>
       <div class=<div class="price"><span style="text-decoration:line-through;color:#94a3b8;">RM30</span><br><span id="lifetimePrice">RM10</span></div>
-      <button class="btn" onclick="addToCart('Lifetime', getLifetimePrice())">Tambah ke Troli</button>
+      <button class="btn" onclick="addToCart('Lifetime', getLifetimePrice())">Tambah</button>
     </div>
 
     <div class="card">
       <h3>3 Bulan</h3>
       <div class="price">RM6</div>
-      <button class="btn" onclick="addToCart('3 Bulan',6)">Tambah ke Troli</button>
+      <button class="btn" onclick="addToCart('3 Bulan',6)">Tambah</button>
     </div>
 
     <div class="card">
       <h3>1 Bulan</h3>
       <div class="price">RM8</div>
-      <button class="btn" onclick="addToCart('1 Bulan',8)">Tambah ke Troli</button>
+      <button class="btn" onclick="addToCart('1 Bulan',8)">Tambah</button>
     </div>
 
   </div>
@@ -250,12 +250,8 @@ function showToast(){
 }
 
 function addToCart(name,price){
-  // setiap klik tambah = item baru (x1 sahaja)
-  cart.push({name,price,qty:1,extra:0});
-  saveCart();
-  renderCart();
-  showToast();
-}else{cart.push({name,price,qty:1});}
+  let item = cart.find(i=>i.name===name);
+  if(item){item.qty++;}else{cart.push({name,price,qty:1});}
   saveCart();
   renderCart();
 
@@ -275,22 +271,11 @@ function renderCart(){
   let total=0;
 
   cart.forEach((item,index)=>{
-    let itemTotal = item.price + (item.extra * 5);
-    total += itemTotal;
+    total += item.price * item.qty;
 
     html += `
     <div class="cart-item">
-      ${item.name} (x1) - RM${itemTotal}
-      <div class="qty-control">
-        <button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
-        <button class="qty-btn" onclick="changeQty(${index},1)">+</button>
-      </div>
-    </div>`;
-  });
-
-  document.getElementById("cartItems").innerHTML = html;
-  document.getElementById("total").innerText = "Total: RM"+total;
-} (x${item.qty}) - RM${item.price*item.qty}
+      ${item.name} (x${item.qty}) - RM${item.price*item.qty}
       <div class="qty-control">
         <button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
         <button class="qty-btn" onclick="changeQty(${index},1)">+</button>
@@ -303,22 +288,8 @@ function renderCart(){
 }
 
 function changeQty(index,change){
-  if(change === 1){
-    if(cart[index].extra < 5){
-      cart[index].extra++;
-    }
-  }else{
-    if(cart[index].extra > 0){
-      cart[index].extra--;
-    }else{
-      // kalau tekan - dan extra dah 0, buang item
-      cart.splice(index,1);
-    }
-  }
-
-  saveCart();
-  renderCart();
-} 
+  cart[index].qty += change;
+  if(cart[index].qty<=0){cart.splice(index,1);} 
   saveCart();
   renderCart();
 }
